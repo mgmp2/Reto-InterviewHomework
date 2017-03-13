@@ -1,0 +1,34 @@
+body { background-color: green;}
+
+
+ul.menu {
+    list-style-type: none; // quita los iconos de la listas
+    padding-bottom: 50px;
+    margin: 0 auto;
+    padding: 21px;
+    width: 1200px;
+    /*margin: 0;
+    padding: 0;
+    overflow: hidden;*/
+    background-color: white; //fondo de la list-style-type:;
+
+}
+
+ul.menu li {float: right;}
+
+ul.menu li a {
+    display: block;
+    color: #7a7575;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.menu li a:hover:not(.active) {background-color: #7a7575; color: white}
+
+ul.menu li a.active {background-color: white;}
+
+@media screen and (max-width: 600px){
+    ul.menu li.right,
+    ul.menu li {float: none;}
+}
