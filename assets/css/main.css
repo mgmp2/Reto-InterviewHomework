@@ -1,6 +1,12 @@
 /*html {
   box-sizing: border-box;
 }*/
+.content-dasboard{
+  display: none;
+}
+.content-myCruise{
+  display: none;
+}
 header{
   padding-top: 14px;
   padding-bottom: 47px;

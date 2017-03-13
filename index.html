@@ -17,18 +17,37 @@
       <div class = "header-titulo">Cruise</div>
       <div class = "header-option">
         <ul class="menu">
-          <li><button type="button" name="button">HELP</button></li>
-          <li><button type="button" name="button">AGENTS</button></li>
-          <li><button type="button" name="button">MY CRUISE</button></li>
-          <li><button type="button" name="button">DASBOARD</button></li>
+          <li><button type="button" id = "btnHelp" name="button">HELP</button></li>
+          <li><button type="button" id = "btnAgents" name="button">AGENTS</button></li>
+          <li><button type="button" id = "btnCruise" name="button">MY CRUISE</button></li>
+          <li><button type="button" id = "btnDasboard" name="button">DASBOARD</button></li>
         </ul>
       </div>
     </div>
   </header>
 
   <main class="contenido">
-    <div class = "content-dasboard">hola</div><hr>
-    <div class = "content-myCruise">e</div><hr>
+    <div class = "content-dasboard" id = "content-dasboard">
+            <form id = "1" action="" onsubmit="">
+      				<div id = "">
+      				<h4>¿Existen dos tipos de funciones?</h4>
+      					<input type="radio" id = "a" name = "p1" class = "1" value="" required> Expresadas y declaradas<br>
+      					<input type="radio" id = "b" name = "p1" class = "1" value="" required> Explicitas y declaradas<br>
+      					<input type="radio" id = "c" name = "p1" class = "1" value="" required> Expresadas y rerivadas
+      				</div>
+      				<button class="" type="submit" onclick= "" >Enviar</button><br>
+      			</form>
+    </div><hr>
+    <div class = "content-myCruise" id = 'content-myCruise'>
+            <form id = "1" action="" onsubmit="">
+              <div id = "">
+              <h4>¿Existen dos tipos de funciones?</h4>
+                <input type="radio" id = "a" name = "p1" class = "1" value="" required> Expresadas y declaradas<br>
+                <input type="radio" id = "b" name = "p1" class = "1" value="" required> Explicitas y declaradas<br>
+              </div>
+              <button class="" type="submit" onclick= "" >Enviar</button><br>
+            </form>
+    </div><hr>
     <div class = "content-agents">
       <div class="header-agents">
         <label class="text-center">Agents</label>
@@ -48,5 +67,6 @@
     <div class = "content-help">o</div><hr>
 
   </main>
+  <script src = "assets/js/main.js"></script>
 </body>
 </html>
