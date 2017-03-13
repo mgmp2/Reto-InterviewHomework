@@ -1,27 +1,48 @@
-body { background-color: green;}
-
-
+html {
+  box-sizing: border-box;
+}
+header{
+  padding-top: 14px;
+  padding-bottom: 47px;
+  width: 1200px;
+  max-width: 80%;
+}
+body {
+}
+.sign-out{
+  text-decoration: none;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.contenido {
+ margin: auto;
+ width: 1200px;
+ height: auto;
+ padding: 0 auto;
+ background-color: orange;
+ max-width: 100%;
+}
 ul.menu {
     list-style-type: none; // quita los iconos de la listas
-    padding-bottom: 50px;
-    margin: 0 auto;
-    padding: 21px;
-    width: 1200px;
-    /*margin: 0;
-    padding: 0;
-    overflow: hidden;*/
-    background-color: white; //fondo de la list-style-type:;
-
 }
 
 ul.menu li {float: right;}
 
-ul.menu li a {
+ul.menu li button {
     display: block;
     color: #7a7575;
     text-align: center;
     padding: 0px 16px;
     text-decoration: none;
+<<<<<<< HEAD
+=======
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+>>>>>>> b06f12e24aeae9025a99fcc67bc891e12fa518fa
 
 }
 
@@ -32,8 +53,9 @@ ul.menu li a:hover:not(.active) {
 ul.menu li a.active {
   background-color: white;}
 
-@media screen and (
-    max-width: 1000px){
+
+@media screen and (max-width: 1000px){
     ul.menu li.right,
     ul.menu li {float: none;}
+
 }
