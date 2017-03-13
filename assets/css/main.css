@@ -1,23 +1,62 @@
-html {
+/*html {
   box-sizing: border-box;
-}
+}*/
 header{
   padding-top: 14px;
   padding-bottom: 47px;
-  width: 1200px;
-  max-width: 80%;
+  width: 1295px;
+  max-width: 100%;
+  background-color: red;
 }
-body {
+button[type= "button"]{
+  color: red;
+  width: auto;
+  max-width: 100%;
+
+}
+
+.contenido {
+  width: 1295px;
+  background-color: orange;
+  margin-right: 9px;
+  text-align: right;
+  max-width: 100%;
+  /*margin: auto;
+  height: auto;
+  padding: 0 auto;
+  max-width: 100%;*/
+}
+.content-agents{
+  width: 1295px;
+  max-width: 100%;
+}
+.header-agents{
+  padding: 50px;
+  width: 1295px;
+  max-width: 100%;
+}
+.btn-agents{
+  border-radius: 7px;
+
+}
+.content-left{
+  width: 490px;
+  height: auto;
+  height: auto;
+  float: left;
+  border-style: solid;
+
+}
+
+.content-right{
+  width: 792px;
+  float: right;
+  border-style: solid;
 }
 .panel-agents{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
+  background-color:#E0E0E0;
   height:auto;
   overflow:hidden;
-  background-color:#E0E0E0;
-  text-align:center;
 }
 .sign-out{
   text-decoration: none;
@@ -25,22 +64,26 @@ body {
 .text-right {
   text-align: right;
 }
+
+.text-left {
+  text-align: left;
+
+}
+
 .text-center {
   text-align: center;
-}
-.contenido {
- margin: auto;
- width: 1200px;
- height: auto;
- padding: 0 auto;
- background-color: orange;
- max-width: 100%;
 }
 ul.menu {
     list-style-type: none; // quita los iconos de la listas
 }
 
 ul.menu li {float: right;}
+
+ul.sub-menu li {
+  float: left;
+  list-style-type: none;
+  margin: 5px;
+  }
 
 ul.menu li button {
     display: block;
@@ -53,12 +96,14 @@ ul.menu li button {
 
 }
 
+
 ul.menu li a:hover:not(.active) {background-color: #7a7575; color: white}
 
 ul.menu li a.active {background-color: white;}
 
 @media screen and (max-width: 1000px){
-    ul.menu li.right,
+    ul.menu li.right, button[type= "button"],
     ul.menu li {float: none;}
+
 
 }
