@@ -10,25 +10,26 @@
 <body>
   <header>
     <div class = "header-content">
-      <div class = "sign-out text-right">
-        <a  href="login.html">Coders</a>
-    		<a  href="salir.html">Salir</a>
-      </div>
-      <div class = "header-titulo">Cruise</div>
-      <div class = "header-option">
-        <ul class="menu">
-          <li><button type="button" id = "btnHelp" name="button">HELP</button></li>
-          <li><button type="button" id = "btnAgents" name="button">AGENTS</button></li>
-          <li><button type="button" id = "btnCruise" name="button">MY CRUISE</button></li>
-          <li><button type="button" id = "btnDasboard" name="button">DASBOARD</button></li>
-        </ul>
+      <div class = "text-right">
+        <label>Signed in as</label>
+        <a  href="login.html">Member</a>
+    		<a  href="salir.html">Sign out</a>
       </div>
     </div>
   </header>
 
   <main class="contenido">
+    <span class="header-titulo">Cruise</span>
+    <div class = "header-option">
+      <ul class="menu">
+        <li><button type="button" id = "btnHelp" name="button">HELP</button></li>
+        <li><button type="button" id = "btnAgents" name="button">AGENTS</button></li>
+        <li><button type="button" id = "btnCruise" name="button">MY CRUISE</button></li>
+        <li><button type="button" id = "btnDasboard" name="button">DASBOARD</button></li>
+      </ul>
+    </div> <br><br>
     <div class = "content-dasboard" id = "content-dasboard">
-            <form id = "1" action="" onsubmit="">
+            <!-- <form id = "1" action="" onsubmit="">
       				<div id = "">
       				<h4>¿Existen dos tipos de funciones?</h4>
       					<input type="radio" id = "a" name = "p1" class = "1" value="" required> Expresadas y declaradas<br>
@@ -36,33 +37,119 @@
       					<input type="radio" id = "c" name = "p1" class = "1" value="" required> Expresadas y rerivadas
       				</div>
       				<button class="" type="submit" onclick= "" >Enviar</button><br>
-      			</form>
+      			</form> -->
     </div><hr>
     <div class = "content-myCruise" id = 'content-myCruise'>
-            <form id = "1" action="" onsubmit="">
+            <!-- <form id = "1" action="" onsubmit="">
               <div id = "">
               <h4>¿Existen dos tipos de funciones?</h4>
                 <input type="radio" id = "a" name = "p1" class = "1" value="" required> Expresadas y declaradas<br>
                 <input type="radio" id = "b" name = "p1" class = "1" value="" required> Explicitas y declaradas<br>
               </div>
               <button class="" type="submit" onclick= "" >Enviar</button><br>
-            </form>
+            </form> -->
     </div><hr>
     <div class = "content-agents">
       <div class="header-agents">
-        <label class="text-center">Agents</label>
+        <label class="agents-text-left">Agents</label>
         <ul class="sub-menu">
           <li><button type="button" class="btn-agents" name="button">All</button></li>
           <li><button type="button" class="btn-agents" name="button">Physical</button></li>
           <li><button type="button" class="btn-agents" name="button">Virtual</button></li>
         </ul>
       </div>
-      <div class="content-left">
-        <div class="panel-agents">lllllllbr <br><br><br></div>
+
+        <div class="content-left">
+        <div class="panel-agents">
+
+          <span class="circle"></span>
+          <div class="top-text">
+              <span class="link">bjstdmngbgr02.thoughtworks.com</span>
+              <span>| idle 192.168.1.2 | /var/lib/cruise-agent</span>
+          </div>
+          <div class="bottom-text">
+              <span>+</span><a href="#">Specify Resources</a> | Resources:
+              <span>Ubuntu </span>
+              <span>Firefox3 </span>
+              <span>Core-Duo </span>
+              <span >Deny</span>
+          </div>
+
+        </div>
+        <div class="panel-agents">
+
+          <span class="circle"></span>
+          <div class="top-text">
+              <span class="link">bjstdmngbgr02.thoughtworks.com</span>
+              <span>| idle 192.168.1.2 | /var/lib/cruise-agent</span>
+          </div>
+          <div class="bottom-text">
+              <span>+</span><a href="#">Specify Resources</a> | Resources:
+              <span>Ubuntu </span>
+              <span>Firefox3 </span>
+              <span>Core-Duo </span>
+              <span >Deny</span>
+          </div>
+
+        </div>
+        <div class="panel-agents">
+
+          <span class="circle"></span>
+          <div class="top-text">
+              <span class="link">bjstdmngbgr02.thoughtworks.com</span>
+              <span>| idle 192.168.1.2 | /var/lib/cruise-agent</span>
+          </div>
+          <div class="bottom-text">
+              <span>+</span><a href="#">Specify Resources</a> | Resources:
+              <span>Ubuntu </span>
+              <span>Firefox3 </span>
+              <span>Core-Duo </span>
+              <span >Deny</span>
+          </div>
+
+        </div>
+        <div class="panel-agents">
+
+          <span class="circle"></span>
+          <div class="top-text">
+              <span class="link">bjstdmngbgr02.thoughtworks.com</span>
+              <span>| idle 192.168.1.2 | /var/lib/cruise-agent</span>
+          </div>
+          <div class="bottom-text">
+              <span>+</span><a href="#">Specify Resources</a> | Resources:
+              <span>Ubuntu </span>
+              <span>Firefox3 </span>
+              <span>Core-Duo </span>
+              <span >Deny</span>
+          </div>
+
+        </div>
       </div>
       <div class="content-right">
-        adios mundo
+        <div class="content-table">
+          <h5>Summary</h5><hr>
+          <table>
+              <tr>
+                  <td>building</td>
+                  <td>2</td>
+              </tr>
+              <tr>
+                  <td>idle</td>
+                  <td>2</td>
+              </tr>
+          </table>
+        </div>
+        <div class="content-history">
+          <h5>History</h5><hr>
+          <div class="history-list">
+              <p>bjstdmngbgr02/Acceptance_test</p>
+              <p>bjstdmngbgr02/Acceptance_test</p>
+              <p>bjstdmngbgr02/Acceptance_test</p>
+              <p>bjstdmngbgr02/Acceptance_test</p>
+              <p>bjstdmngbgr02/Acceptance_test</p>
+          </div>
       </div>
+
     </div><hr>
     <div class = "content-help">o</div><hr>
 

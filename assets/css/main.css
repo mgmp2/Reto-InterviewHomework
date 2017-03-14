@@ -1,18 +1,113 @@
-/*html {
-  box-sizing: border-box;
-}*/
+.content-table{
+  margin:20px;
+}
+.content-history{
+  margin:20px;
+}
+.content-left{
+  height: auto;
+  float: left;
+  width: 67%;
+  background-color: white;
+}
+.content-right{
+  height: auto;
+  float: right;
+  background-color: white;
+  width: 30%;
+}
+  body{
+    background-color: pink;
+  }
+  .circle{
+    float: left;
+    width: 35px;
+    height: 35px;
+    background: gray;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    margin: 10px 8px 10px 15px;
+    display: block;
+  }
+  .panel-agents{
+    background-color: yellow;
+    width: 574px;
+    height: 56px;
+    margin: 20px 20px;
+  }
+  header{
+    padding: 5px;
+    max-width: 95%;
+    background-color: gray;
+  }
+  .header-titulo{
+    float: left;
+    font-size: 35px;
+  }
+  header-option{
+    float: right;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .content-agents{
+    margin-top: 0px;
+    width: 1295px;
+    max-width: 100%;
+    position: relative;
+  }
+  .menu{
+    margin-right: 50px;
+    list-style-type: none;
+  }
+  .sub-menu{
+    list-style-type: none; // quita los iconos de la listas
+    background-color: gray;
+  }
+  .header-option{
+    margin: auto;
+    position: relative;
+  }
+
+  .header-agents{
+    height: 40px;
+    background-color: gray;
+  }
+  .agents-text-left{
+    float: left;
+    font-size: 28px;
+    margin-left: 14px;
+  }
+
+  .btn-agents{
+    float: left;
+    border-radius: 7px;
+    /*margin-left: 28px;
+    padding: 7px 7px;  */ //los esta poniendo en escalera
+  }
+
+  ul.menu li button {
+    color: black;
+    background-color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-width: 100%;
+    border-style: solid;
+    border-color: black;
+  }
+  ul.menu li {
+    float: right;
+    } //los pone de manera horizontal
+
+/*
 .content-dasboard{
   display: none;
 }
 .content-myCruise{
   display: none;
-}
-header{
-  padding-top: 14px;
-  padding-bottom: 47px;
-  width: 1295px;
-  max-width: 100%;
-  background-color: red;
 }
 button[type= "button"]{
   color: red;
@@ -27,48 +122,18 @@ button[type= "button"]{
   margin-right: 9px;
   text-align: right;
   max-width: 100%;
-  /*margin: auto;
-  height: auto;
-  padding: 0 auto;
-  max-width: 100%;*/
-}
-.content-agents{
-  width: 1295px;
-  max-width: 100%;
+
 }
 .header-agents{
   padding: 50px;
   width: 1295px;
   max-width: 100%;
 }
-.btn-agents{
-  border-radius: 7px;
 
-}
-.content-left{
-  width: 490px;
-  height: auto;
-  height: auto;
-  float: left;
-  border-style: solid;
-
-}
-
-.content-right{
-  width: 792px;
-  float: right;
-  border-style: solid;
-}
 .panel-agents{
   background-color:#E0E0E0;
   height:auto;
   overflow:hidden;
-}
-.sign-out{
-  text-decoration: none;
-}
-.text-right {
-  text-align: right;
 }
 
 .text-left {
@@ -78,28 +143,6 @@ button[type= "button"]{
 
 .text-center {
   text-align: center;
-}
-ul.menu {
-    list-style-type: none; // quita los iconos de la listas
-}
-
-ul.menu li {float: right;}
-
-ul.sub-menu li {
-  float: left;
-  list-style-type: none;
-  margin: 5px;
-  }
-
-ul.menu li button {
-    display: block;
-    color: #7a7575;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-
 }
 
 
@@ -112,4 +155,4 @@ ul.menu li a.active {background-color: white;}
     ul.menu li {float: none;}
 
 
-}
+}*/
