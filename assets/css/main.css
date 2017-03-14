@@ -59,7 +59,6 @@
     width: 1295px;
     max-width: 100%;
     position: relative;
-    display: none;
   }
   .menu{
     margin-right: 50px;
@@ -77,6 +76,7 @@
   .header-agents{
     height: 40px;
     background-color: gray;
+    display: none;
   }
   .agents-text-left{
     float: left;

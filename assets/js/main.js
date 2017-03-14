@@ -1,57 +1,90 @@
 
 // var btnAgents = document.getElementById('btnAgents');
+//var btnAll = document.getElementById('btnAll');
+var btnPhysical = document.getElementById('btnPhysical');
+var btnVirtual = document.getElementById('btnVirtual');
+var content_agent = document.getElementById('content-left');
 btnAgents.addEventListener('click',function(e){
   e.preventDefault();
-  document.getElementById('content-agents').style.display = "block";
-  document.getElementById('content-agents').innerHTML = mostrarAgentes(usuarios);
+  var header_agents = document.getElementById('header-agents');
+  header_agents.style.display = "block"
+});
+btnAll.addEventListener('click',function(e){
+  content_agent.innerHTML = "";
+  e.preventDefault();
+  mostrarAgentes(agentes,content_agent);
+});
+btnPhysical.addEventListener('click',function(e){
+  e.preventDefault();
+  content_agent.innerHTML = "";
+  var agentes_fisicos = agentes.filter(e => e.tipo == 'fisico');
+  mostrarAgentes(agentes_fisicos,content_agent);
+});
+btnVirtual.addEventListener('click',function(e){
+  e.preventDefault();
+  content_agent.innerHTML = "";
+  var agentes_virtuales = agentes.filter(e => e.tipo == 'virtual');
+      mostrarAgentes(agentes_virtuales,content_agent);
 });
 
-var mostrarAgentes = function(array){
-  var mensaje = "";
-  array.forEach(function(e){
-    return mensaje += e.email;
-  });
-  return mensaje;
+var mostrarAgentes = function(array,elemento){
+  for (var i = 0; i < array.length; i++) {
+      elemento.appendChild(createHTMLPanel(i));
+  }
 }
 
-var createHTMLPost = function(text,id) {
-    var post = document.createElement('div');
-    post.setAttribute('data-id',id)
-    var p = document.createElement('p');
-    p.innerHTML = text;
-
-    var editar = document.createElement('a');
-    editar.setAttribute('href',"#");
-    editar.setAttribute('data-edit-mode',false);
-    editar.innerHTML = "Editar";
-    editar.addEventListener('click',function(e) {
-      e.preventDefault();
-      if (e.target.getAttribute('data-edit-mode') === 'false') {
-        e.target.innerHTML = "Guardar";
-        var editText = e.target.parentNode.getElementsByTagName('p')[0].innerHTML;
-
-        var editTextarea = document.createElement('textarea');
-        editTextarea.value = editText;
-        e.target.parentNode.insertBefore(editTextarea,p);
-        e.target.parentNode.insertBefore(document.createElement('br'),e.target);
-        e.target.parentNode.removeChild(p);
-      } else {
-        e.target.innerHTML = "Guardar";
-      }
-      var postId = e.target.parentNode.getAttribute('data-id');
-
+var createHTMLPanel = function(indice) {
+    var recursos_agentes = agentes[indice].recursos.map(e => e);
+    var panel = document.createElement('div');
+    panel.setAttribute('data-id',agentes[indice].id);
+    if(agentes[indice].estado == 'idle'){
+      panel.setAttribute('class','panel-agents-idle');
+    }else{
+      panel.setAttribute('class','panel-agents-building');
+    }
+    var span_circulo = document.createElement('span');
+    span_circulo.setAttribute('class','circle');
+    var div_agents = document.createElement('div');
+    div_agents.setAttribute('class','top-text');
+    var span_dominio = document.createElement('span');
+    span_dominio.innerHTML = agentes[indice].url + "&nbsp &nbsp &nbsp|&nbsp "+agentes[indice].estado + "&nbsp|&nbsp"+ agentes[indice].direccionIP +  "&nbsp|&nbsp"+ agentes[indice].directorio;
+    var span_directorio = document.createElement('span');
+    div_agents.appendChild(span_dominio);
+    var div_recursos = document.createElement('div');
+    var span_resources = document.createElement('span');
+    recursos_agentes.map(function(e){
+      var nombre_recurso = document.createElement('span');
+      nombre_recurso.innerHTML = "&nbsp &nbsp"+e.name+ '&nbsp &nbsp';
+      var a = document.createElement('input');
+      a.setAttribute('type','button');
+      a.setAttribute('value','X');
+      a.setAttribute('resourse-id',e.id);
+      //span_resources.innerHTML = e
+      span_resources.appendChild(nombre_recurso);
+      span_resources.appendChild(a);
+    //  span_resources.innerHTML = e + span_resources.appendChild(a);
     });
-
-    var eliminar = document.createElement('a');
-    eliminar.setAttribute('href',"#");
-    eliminar.innerHTML = "Eliminar"
-    eliminar.addEventListener('click',function(e) {
+    div_recursos.setAttribute('class','bottom-text');
+    var agregar = document.createElement('input');
+    agregar.setAttribute('type','button');
+    agregar.setAttribute('value','+ Specify Resources');
+    agregar.addEventListener('click',function(e) {
       e.preventDefault();
-      var postId = e.target.parent.getAttribute('data-id');
-
+      var agregarRecurso = prompt("Separe multiple resources name with commas");
     });
-    post.appendChild(p);
-    post.appendChild(editar);
-    post.appendChild(eliminar);
-    return post;
+    div_recursos.appendChild(agregar);
+    div_recursos.appendChild(span_resources);
+
+    // var eliminar = document.createElement('a');
+    // eliminar.setAttribute('href',"#");
+    // eliminar.innerHTML = "Eliminar"
+    // eliminar.addEventListener('click',function(e) {
+    //   e.preventDefault();
+    //   var postId = e.target.parent.getAttribute('data-id');
+    //
+    // });
+    panel.appendChild(span_circulo);
+    panel.appendChild(div_agents);
+    panel.appendChild(div_recursos);
+    return panel;
 }
