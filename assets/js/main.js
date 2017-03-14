@@ -1,7 +1,11 @@
 
-// var btnAgents = document.getElementById('btnAgents');
+
+x = document.getElementById("mostrar");
+x.style.display = "none";
 
 if(localStorage.getItem("usuario-correo")){
+  x.style.display = "block";
+  console.log(localStorage.getItem("usuario-correo"));
   var ingreso= document.getElementById("typeOfsigin");
 
   ingreso.textContent = localStorage.getItem("usuario-correo") ;
@@ -66,9 +70,10 @@ document.getElementById("salir").addEventListener("click", function(){
     var xSalir ="";
     localStorage.setItem("usuario-correo", xSalir);
     console.log("dddd"+xSalir);
-    window.location = "index.html";
+    window.location = "login.html";
   });}
   else{
     alert("Debe ingresar");
-    window.location = "index.html";
+    x.style.display = "none";
+    window.location = "login.html";
   }

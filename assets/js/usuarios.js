@@ -69,8 +69,6 @@ usuarios.forEach(function(e){
 if(cont == 1) {
 	localStorage.setItem("usuario-correo", m);
 	window.location="index.html";
-	console.log(window.location);
-	console.log("Quien eres:"+m);
 
 
 }
