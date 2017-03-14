@@ -1,9 +1,16 @@
 
 // var btnAgents = document.getElementById('btnAgents');
+
+if(localStorage.getItem("usuario-correo")){
+  var ingreso= document.getElementById("typeOfsigin");
+
+  ingreso.textContent = localStorage.getItem("usuario-correo") ;
+
+
 btnAgents.addEventListener('click',function(e){
   e.preventDefault();
   document.getElementById('content-agents').style.display = "block";
-  document.getElementById('content-agents').innerHTML = mostrarAgentes(usuarios);
+  document.getElementById('content-agents').innerText = mostrarAgentes(usuarios);
 });
 
 var mostrarAgentes = function(array){
@@ -55,3 +62,13 @@ var createHTMLPost = function(text,id) {
     post.appendChild(eliminar);
     return post;
 }
+document.getElementById("salir").addEventListener("click", function(){
+    var xSalir ="";
+    localStorage.setItem("usuario-correo", xSalir);
+    console.log("dddd"+xSalir);
+    window.location = "index.html";
+  });}
+  else{
+    alert("Debe ingresar");
+    window.location = "index.html";
+  }
