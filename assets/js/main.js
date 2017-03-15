@@ -76,20 +76,23 @@ var createHTMLPanel = function(indice) {
     div_recursos.setAttribute('id',indice);
     var span_resources = document.createElement('span');
     span_resources.setAttribute('id','ar'+indice)
-    recursos_agentes.map(function(e){
+    recursos_agentes.map(function(e,i){
       var span_padre = document.createElement('span');
       var span_resource = document.createElement('span');
       var nombre_recurso = document.createElement('span');
-      nombre_recurso.setAttribute('resource-id',e.id);
+      //nombre_recurso.setAttribute('resource-id',e.id);
       nombre_recurso.innerHTML = "&nbsp &nbsp"+e.name+ '&nbsp &nbsp';
-      var btn = document.createElement('input');
-      btn.setAttribute('type','button');
-      btn.setAttribute('value','X');
-      btn.addEventListener('click',function(e){
-        
+      var btn_eliminar = document.createElement('input');
+      btn_eliminar.setAttribute('type','button');
+      btn_eliminar.setAttribute('value','X');
+      btn_eliminar.addEventListener('click',function(e){
+        var parentSpan = e.target.parentNode;
+        console.log(parentSpan);
+        span_resources.removeChild(parentSpan);
+        agentes[indice].recursos.splice(i,1);
       });
       span_padre.appendChild(nombre_recurso);
-      span_padre.appendChild(btn);
+      span_padre.appendChild(btn_eliminar);
       span_resources.appendChild(span_padre);
     });
     div_recursos.setAttribute('class','bottom-text');
@@ -104,7 +107,7 @@ var createHTMLPanel = function(indice) {
       var agente_id = parseInt(e.target.getAttribute('data-id'));
       var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
       for (var i in arrayRecursos) {
-          document.getElementById(e.target.getAttribute('data-id')).appendChild(agregarRecursos(id,arrayRecursos[i],agente_id));
+          document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,arrayRecursos[i],agente_id));
           id++;
       }
     });
@@ -116,19 +119,27 @@ var createHTMLPanel = function(indice) {
     return panel;
 }
 
-function agregarRecursos (i,nombre,id_agente){
+
+function addResourcesArray (i,nombre,id_agente){
   var nombre_recurso = document.getElementById('ar'+id_agente);
   var span_padre = document.createElement('span');
   var span_hijo = document.createElement('span');
-  span_hijo.setAttribute('resource-id',i);
+  //span_hijo.setAttribute('resource-id',i);
   span_hijo.innerHTML = "&nbsp &nbsp"+nombre+ '&nbsp &nbsp';
   var btn = document.createElement('input');
   btn.setAttribute('type','button');
   btn.setAttribute('value','X');
+  btn.addEventListener('click', function (e){
+    var parentSpan = e.target.parentNode;
+    nombre_recurso.removeChild(parentSpan);
+    console.log(i);
+    agentes[id_agente].recursos.splice(i,1);
+    // agentes[id_agente]
+  });
   span_padre.appendChild(span_hijo);
   span_padre.appendChild(btn);
   nombre_recurso.appendChild(span_padre);
-  var obje = { id : i, name : nombre  }
+  var obje = {name : nombre  }
   agentes[id_agente].recursos.push(obje);
   return nombre_recurso;
 }
