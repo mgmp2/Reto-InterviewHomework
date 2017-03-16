@@ -12,10 +12,10 @@ var ejecutar = function(){
   var btnPhysical = document.getElementById('btnPhysical');
   var btnVirtual = document.getElementById('btnVirtual');
   var content_agent = document.getElementById('content-left');
-document.getElementById('btnAgents').addEventListener('click',function(e){
-  e.preventDefault();
-  var header_agents = document.getElementById('header-agents');
-  header_agents.style.display = "block"
+  document.getElementById('btnAgents').addEventListener('click',function(e){
+    e.preventDefault();
+    var header_agents = document.getElementById('header-agents');
+    header_agents.style.display = "block";
 });
 
 btnAll.addEventListener('click',function(e){
@@ -24,6 +24,7 @@ btnAll.addEventListener('click',function(e){
   mostrarAgentes(agentes,content_agent);
   summary('total-building','panel-agents-building');
   summary('total-idle','panel-agents-idle');
+  document.getElementById('content-right').style.display = "block";
 });
 
 btnPhysical.addEventListener('click',function(e){
@@ -33,6 +34,7 @@ btnPhysical.addEventListener('click',function(e){
   mostrarAgentes(agentes_fisicos,content_agent);
   summary('total-building','panel-agents-building');
   summary('total-idle','panel-agents-idle');
+  document.getElementById('content-right').style.display = "block";
 });
 
 btnVirtual.addEventListener('click',function(e){
@@ -42,6 +44,7 @@ btnVirtual.addEventListener('click',function(e){
       mostrarAgentes(agentes_virtuales,content_agent);
       summary('total-building','panel-agents-building');
       summary('total-idle','panel-agents-idle');
+      document.getElementById('content-right').style.display = "block";
 
 });
 
@@ -70,9 +73,8 @@ var createHTMLPanel = function(indice) {
     div_agents.setAttribute('class','top-text');
     var span_dominio = document.createElement('span');
     span_dominio.innerHTML = agentes[indice].url + "&emsp;|&nbsp "+agentes[indice].estado + "&nbsp|&nbsp"+ agentes[indice].direccionIP +  "&nbsp|&nbsp"+ agentes[indice].directorio;
-    var span_directorio = document.createElement('span');
     div_agents.appendChild(span_dominio);
-    var div_recursos = document.createElement('div');
+    var div_recursos = document.createElement('p');
     div_recursos.setAttribute('id',indice);
     var span_resources = document.createElement('span');
     span_resources.setAttribute('id','ar'+indice)
@@ -96,26 +98,55 @@ var createHTMLPanel = function(indice) {
       span_resources.appendChild(span_padre);
     });
     div_recursos.setAttribute('class','bottom-text');
+    var toolTip = document.createElement('div');
+    toolTip.setAttribute('class','tooltip');
+    var div_toolTip = document.createElement('div');
+    div_toolTip.setAttribute('id','bubble');
+    div_toolTip.setAttribute('class','tooltiptext');
+    div_toolTip.setAttribute('id','tol'+indice);
+    var span_toolTip = document.createElement('span');
+    span_toolTip.innerHTML ='(Separe multiple resources name with commas)';
+    var input_resource = document.createElement('input');
+    input_resource.setAttribute('type','text');
+    var btn_toolTip = document.createElement('button');
+    btn_toolTip.setAttribute('data-id',agentes[indice].id);
+    btn_toolTip.innerHTML = "Add Resourse";
+    btn_toolTip.addEventListener('click', function(e) {
+      e.preventDefault();
+      var agregarRecursos = input_resource.value;
+      var arrayRecursos = agregarRecursos.split(',');
+       var agente_id = parseInt(e.target.getAttribute('data-id'));
+      var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
+      for (var i in arrayRecursos) {
+        document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,arrayRecursos[i],agente_id));
+        id++;
+      }
+    });
+    var btn_toolClose = document.createElement('button');
+    btn_toolClose.innerHTML = "Close";
+    btn_toolClose.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('tol'+indice).classList.toggle("active");
+    });
+    div_toolTip.appendChild(span_toolTip);
+    div_toolTip.appendChild(input_resource);
+    div_toolTip.appendChild(btn_toolTip);
+    div_toolTip.appendChild(btn_toolClose);
+    toolTip.appendChild(div_toolTip);
     var agregar = document.createElement('input');
     agregar.setAttribute('type','button');
     agregar.setAttribute('value','+ Specify Resources');
-    agregar.setAttribute('data-id',agentes[indice].id);
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
-      var agregarRecurso = prompt("Separe multiple resources name with commas");
-      var arrayRecursos = agregarRecurso.split(',');
-      var agente_id = parseInt(e.target.getAttribute('data-id'));
-      var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
-      for (var i in arrayRecursos) {
-          document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,arrayRecursos[i],agente_id));
-          id++;
-      }
+      console.log(document.getElementById('tol'+indice));
+      document.getElementById('tol'+indice).classList.toggle("active");
     });
     div_recursos.appendChild(agregar);
     div_recursos.appendChild(span_resources);
     panel.appendChild(span_circulo);
     panel.appendChild(div_agents);
     panel.appendChild(div_recursos);
+    panel.appendChild(toolTip);
     return panel;
 }
 

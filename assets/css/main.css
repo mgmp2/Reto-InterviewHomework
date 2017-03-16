@@ -1,13 +1,13 @@
 .content-table{
-  margin:20px;
+  margin:20%;
 }
 .content-history{
-  margin:20px;
+  margin:20%;
 }
 .content-left{
   height: auto;
   float: left;
-  width: 67%;
+  width: 69%;
   background-color: white;
 }
 .content-right{
@@ -15,36 +15,53 @@
   float: right;
   background-color: white;
   width: 30%;
+  display: none;
 }
   body{
     background-color: pink;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1em;
   }
   .circle{
     float: left;
-    width: 35px;
-    height: 35px;
+    width: 49px;
+    height: 49px;
     background: gray;
-    border-radius: 50px;
+    border-radius: 57px;
     margin: 10px 10px;
   }
   .panel-agents-idle{
-    background-color: green;
-    width: 574px;
-    height: 56px;
-    margin: 20px 20px;
+    background-color: #89ed9f;
+    width: 95%;
+    height: 60%;
+    margin: 20px auto;
+    padding: 0.5%;
+    border-radius: 7px;
+    border-style: dotted;
+    border-width: 1px;
+    border-color: black;
   }
   .panel-agents-building{
-    background-color: yellow;
-    width: 574px;
-    height: 56px;
-    margin: 20px 20px;
+    background-color: #fcdd9f;
+    width: 95%;
+    height: 60%;
+    margin: 20px auto;
+    padding: 0.5%;
+    border-radius: 7px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: black;
   }
   header{
-    padding: 5px;
+    width: 95%;
+    margin: 21px auto;
+    padding: 1%;
     max-width: 95%;
-    background-color: gray;
+    /*background-color: gray;*/
+    position: relative;
   }
   .header-titulo{
+    margin-left: 5%;
     float: left;
     font-size: 35px;
   }
@@ -55,47 +72,56 @@
     text-align: right;
   }
   .content-agents{
-    margin-top: 0px;
-    width: 1295px;
+    margin: 0px auto auto;
+    width: 90%;
     max-width: 100%;
     position: relative;
+    background-color: gray;
+    height: 7%;
   }
   .menu{
     margin-right: 50px;
     list-style-type: none;
+    margin-right: 5%;
   }
   .sub-menu{
     list-style-type: none; // quita los iconos de la listas
-    background-color: gray;
+    /*background-color: gray;*/
   }
   .header-option{
-    margin: auto;
     position: relative;
   }
 
   .header-agents{
     height: 40px;
-    background-color: gray;
+    /*background-color: gray;*/
     display: none;
+    margin: 0px auto auto;
   }
   .agents-text-left{
     float: left;
     font-size: 28px;
     margin-left: 14px;
+    margin-right: 14px;
   }
 
   .btn-agents{
     float: left;
-    border-radius: 7px;
-    /*margin-left: 28px;
-    padding: 7px 7px;  */ //los esta poniendo en escalera
+    width: 70px;
+    height: 30px;
+    border-radius: 14px;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    border-color: black;
+    /*padding: 7px 7px;  */ //los esta poniendo en escalera
   }
 
   ul.menu li button {
     color: black;
     background-color: white;
     padding: 10px;
-    text-decoration: none;
+    margin-left: 10px;
+    /*text-decoration: none;*/
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     max-width: 100%;
@@ -157,6 +183,27 @@ ul.menu li a.active {background-color: white;}
 @media screen and (max-width: 1000px){
     ul.menu li.right, button[type= "button"],
     ul.menu li {float: none;}
-
-
 }*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 350px;
+    background-color:#9ae2b7;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    border-style : solid;
+    border-width: 1px;
+    border-color : #1f9b0f;
+    padding: 5px 0;
+    position: absolute;
+}
+
+.tooltip .active {
+    visibility: visible;
+}
