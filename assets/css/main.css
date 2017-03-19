@@ -1,8 +1,9 @@
 .content-table{
-  margin:20%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .content-history{
-  margin:20%;
+  margin-left: 10%;
 }
 .content-left{
   height: auto;
@@ -14,11 +15,10 @@
   height: auto;
   float: right;
   background-color: white;
-  width: 30%;
+  width: 31%;
   display: none;
 }
   body{
-    background-color: pink;
     font-family: "Times New Roman", Times, serif;
     font-size: 1em;
   }
@@ -37,7 +37,7 @@
     margin: 20px auto;
     padding: 0.5%;
     border-radius: 7px;
-    border-style: dotted;
+    border-style: dashed;
     border-width: 1px;
     border-color: black;
   }
@@ -85,6 +85,8 @@
     margin-right: 5%;
   }
   .sub-menu{
+    margin-top: 0px;
+    margin-bottom: 0px;
     list-style-type: none; // quita los iconos de la listas
     /*background-color: gray;*/
   }
@@ -93,7 +95,7 @@
   }
 
   .header-agents{
-    height: 40px;
+    height: 20px;
     /*background-color: gray;*/
     display: none;
     margin: 0px auto auto;
