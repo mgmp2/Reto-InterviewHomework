@@ -8,11 +8,22 @@
 //   console.log(localStorage.getItem("usuario-correo"));
 //   var ingreso= document.getElementById("typeOfsigin");
 //   ingreso.textContent = localStorage.getItem("usuario-correo") ;
+
+
+
+
+function changeColorOfAgents(a,x,y){
+  a.style.backgroundColor = "#e2d3d3";
+  x.style.backgroundColor = "#9e9494";
+  y.style.backgroundColor = "#9e9494";
+}
 var ejecutar = function(){
   var btnPhysical = document.getElementById('btnPhysical');
   var btnVirtual = document.getElementById('btnVirtual');
   var content_agent = document.getElementById('content-left');
   document.getElementById('btnAgents').addEventListener('click',function(e){
+    var x = document.getElementById("btnAgents");
+    x.style.backgroundColor = "gray";
     e.preventDefault();
     var header_agents = document.getElementById('header-agents');
     header_agents.style.display = "block";
@@ -20,6 +31,7 @@ var ejecutar = function(){
 
 btnAll.addEventListener('click',function(e){
   content_agent.innerHTML = "";
+  changeColorOfAgents(btnAll, btnPhysical,btnVirtual);
   e.preventDefault();
   mostrarAgentes(agentes,content_agent);
   summary('total-building','panel-agents-building');
@@ -29,6 +41,7 @@ btnAll.addEventListener('click',function(e){
 
 btnPhysical.addEventListener('click',function(e){
   e.preventDefault();
+  changeColorOfAgents(btnPhysical,btnAll, btnVirtual);
   content_agent.innerHTML = "";
   var agentes_fisicos = agentes.filter(e => e.tipo == 'fisico');
   mostrarAgentes(agentes_fisicos,content_agent);
@@ -39,6 +52,7 @@ btnPhysical.addEventListener('click',function(e){
 
 btnVirtual.addEventListener('click',function(e){
   e.preventDefault();
+  changeColorOfAgents(btnVirtual, btnAll, btnPhysical);
   content_agent.innerHTML = "";
   var agentes_virtuales = agentes.filter(e => e.tipo == 'virtual');
       mostrarAgentes(agentes_virtuales,content_agent);
@@ -108,9 +122,11 @@ var createHTMLPanel = function(indice) {
     span_toolTip.innerHTML ='(Separe multiple resources name with commas)';
     var input_resource = document.createElement('input');
     input_resource.setAttribute('type','text');
+    input_resource.setAttribute('class', "styleBox");
     var btn_toolTip = document.createElement('button');
     btn_toolTip.setAttribute('data-id',agentes[indice].id);
-    btn_toolTip.innerHTML = "Add Resourse";
+    btn_toolTip.setAttribute('class', "styleButton");
+    btn_toolTip.innerHTML = "Add Resource";
     btn_toolTip.addEventListener('click', function(e) {
       e.preventDefault();
       var agregarRecursos = input_resource.value;
@@ -123,10 +139,11 @@ var createHTMLPanel = function(indice) {
       }
     });
     var btn_toolClose = document.createElement('button');
+    btn_toolClose.setAttribute('class', "styleButton");
     btn_toolClose.innerHTML = "Close";
     btn_toolClose.addEventListener('click', function(e) {
       e.preventDefault();
-      document.getElementById('tol'+indice).classList.toggle("active");
+      document.getElementById('tol'+indice).style.visibility = "hidden";
     });
     div_toolTip.appendChild(span_toolTip);
     div_toolTip.appendChild(input_resource);
@@ -139,7 +156,9 @@ var createHTMLPanel = function(indice) {
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
       console.log(document.getElementById('tol'+indice));
-      document.getElementById('tol'+indice).classList.toggle("active");
+      document.getElementById('tol'+indice).style.visibility = "visible";
+      // var y =document.getElementById('tol'+indice::after);
+      // y.style.visibility = 'visible';
     });
     div_recursos.appendChild(agregar);
     div_recursos.appendChild(span_resources);

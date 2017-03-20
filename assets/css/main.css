@@ -115,7 +115,19 @@
     margin-top: 0.5%;
     margin-left: 0.5%;
     border-color: black;
+    background-color: #9e9494;
     /*padding: 7px 7px;  */ //los esta poniendo en escalera
+  }
+  .styleButton{
+    border-radius: 20px;
+    border-color: black;
+    margin: 10px;
+    background-color: #c5b5b5;
+  }
+  .styleBox{
+    width: 95%;
+    margin-left: 21px;
+    margin: 7px auto;
   }
 
   ul.menu li button {
@@ -194,18 +206,29 @@ ul.menu li a.active {background-color: white;}
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 350px;
-    background-color:#9ae2b7;
-    color: #fff;
+    width: 560px;
+    background-color: #65a064;
+    color: #131f18;
+    margin-left: 5%;
     text-align: center;
     border-radius: 6px;
     border-style : solid;
     border-width: 1px;
-    border-color : #1f9b0f;
+    border-color: #e4c067;
     padding: 5px 0;
     position: absolute;
 }
 
-.tooltip .active {
-    visibility: visible;
+
+#tol0::before,  #tol1::before, #tol2::before, #tol3::before,
+#tol4::before, #tol5::before, #tol6::before, #tol7::before {
+    width: 15px;
+    height: 15px;
+    background-color:#65a064;
+    position: absolute;
+    transform: rotate(45deg);
+    margin-left: 7%;
+    margin-top: -2%;
+    left: 5%;
+    content: "";
 }
