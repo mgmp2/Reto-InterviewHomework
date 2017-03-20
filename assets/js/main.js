@@ -98,6 +98,7 @@ var createHTMLPanel = function(indice) {
       var btn_eliminar = document.createElement('input');
       btn_eliminar.setAttribute('type','button');
       btn_eliminar.setAttribute('value','X');
+      btn_eliminar.setAttribute('class','btn-resources');
       btn_eliminar.addEventListener('click',function(e){
         var parentSpan = e.target.parentNode;
         span_resources.removeChild(parentSpan);
@@ -137,7 +138,8 @@ var createHTMLPanel = function(indice) {
 
         document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,y,agente_id));
         id++;
-      }}
+      }
+      }
       else {
         alert("Debe ingresar recursos");
       }
@@ -156,6 +158,7 @@ var createHTMLPanel = function(indice) {
     toolTip.appendChild(div_toolTip);
     var agregar = document.createElement('input');
     agregar.setAttribute('type','button');
+    agregar.setAttribute('class','styleSR')
     agregar.setAttribute('value','+ Specify Resources');
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
@@ -182,6 +185,7 @@ function addResourcesArray (i,nombre,id_agente){
   var btn = document.createElement('input');
   btn.setAttribute('type','button');
   btn.setAttribute('value','X');
+  btn.setAttribute('class','btn-resources');
   btn.addEventListener('click', function (e){
     var parentSpan = e.target.parentNode;
     nombre_recurso.removeChild(parentSpan);
@@ -190,6 +194,7 @@ function addResourcesArray (i,nombre,id_agente){
   });
   span_padre.appendChild(span_hijo);
   span_padre.appendChild(btn);
+  console.log(span_padre);
   nombre_recurso.appendChild(span_padre);
   var obje = {name : nombre  }
   agentes[id_agente].recursos.push(obje);
