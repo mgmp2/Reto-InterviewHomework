@@ -69,7 +69,11 @@
     float: right;
   }
   .text-right {
+
     text-align: right;
+  }
+  .textA{
+    color: black;
   }
   .content-agents{
     margin: 0px auto auto;

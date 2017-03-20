@@ -5,28 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/fonts/style.css">
   <title>Document</title>
 </head>
 <body id="mostrar">
   <header>
     <div class = "header-content">
-      <div class = "text-right" id="salir">
-        <span >Signed in as
-          <a href="#"><label id="typeOfsigin"></label></a>
+      <div class = "text-right" >
+        <span class="icon-user">Signed in as
+          <a href="#"><label id="typeOfsigin" class="textA"></label></a>
         </span>
-    		<a id="salir" href="#">Sign out</a>
+        <span class="icon-arrow-right"></span>
+    		<a id="salir" href="#" class="textA">Sign out </a>
+        <span class="icon-switch"></span>
       </div>
     </div>
   </header>
 
   <main class="contenido">
-    <span class="header-titulo">Cruise</span>
+    <span class="header-titulo">Cruise </span>
     <div class = "header-option">
       <ul class="menu">
-        <li><button type="button" id = "btnHelp"     name="button">HELP</button></li>
-        <li><button type="button" id = "btnAgents"   name="button">AGENTS</button></li>
-        <li><button type="button" id = "btnCruise"   name="button">MY CRUISE</button></li>
-        <li><button type="button" id = "btnDasboard" name="button">DASBOARD</button></li>
+        <li><button type="button" id = "btnHelp"     name="button" class="icon-question"> HELP</button></li>
+        <li><button type="button" id = "btnAgents"   name="button" class="icon-users"   > AGENTS</button></li>
+        <li><button type="button" id = "btnCruise"   name="button"                      > MY CRUISE</button></li>
+        <li><button type="button" id = "btnDasboard" name="button"                      > DASBOARD</button></li>
       </ul>
     </div> <br><br>
     <div class = "content-dasboard" id = "content-dasboard">
@@ -37,7 +40,7 @@
     </div>
     <div class = "content-agents" id = 'content-agents'>
       <div class="header-agents" id = "header-agents">
-        <label class="agents-text-left">Agents</label>
+        <label class="agents-text-left ">Agents</label>
         <ul class="sub-menu">
           <li><button type="button" id = "btnAll" class="btn-agents" name="all">All</button></li>
           <li><button type="button" id = "btnPhysical" class="btn-agents" name="fisico">Physical</button></li>

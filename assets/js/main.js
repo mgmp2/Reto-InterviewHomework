@@ -14,6 +14,11 @@ function changeColorOfAgents(a,x,y){
   x.style.backgroundColor = "#9e9494";
   y.style.backgroundColor = "#9e9494";
 }
+
+function dce(e){
+  return document.createElement(e);
+
+}
 var ejecutar = function(){
   var btnPhysical = document.getElementById('btnPhysical');
   var btnVirtual = document.getElementById('btnVirtual');
@@ -72,33 +77,34 @@ function summary(element,clase){
 
 var createHTMLPanel = function(indice) {
     var recursos_agentes = agentes[indice].recursos.map(e => e);
-    var panel = document.createElement('div');
+    var panel = dce('div');
     if(agentes[indice].estado == 'idle') {
       panel.setAttribute('class','panel-agents-idle');
     } else {
       panel.setAttribute('class','panel-agents-building');
     }
-    var span_circulo = document.createElement('span');
+    var span_circulo = dce('span');
     span_circulo.setAttribute('class','circle');
-    var div_agents = document.createElement('div');
+    var div_agents = dce('div');
     div_agents.setAttribute('class','top-text');
-    var span_dominio = document.createElement('span');
+    var span_dominio = dce('span');
     span_dominio.innerHTML = agentes[indice].url + "&emsp;|&nbsp "+agentes[indice].estado + "&nbsp|&nbsp"+ agentes[indice].direccionIP +  "&nbsp|&nbsp"+ agentes[indice].directorio;
     div_agents.appendChild(span_dominio);
-    var div_recursos = document.createElement('p');
+    var div_recursos = dce('p');
     div_recursos.setAttribute('id',indice);
-    var span_resources = document.createElement('span');
+    var span_resources = dce('span');
     span_resources.setAttribute('id','ar'+indice)
     recursos_agentes.map(function(e,i){
-      var span_padre = document.createElement('span');
-      var span_resource = document.createElement('span');
-      var nombre_recurso = document.createElement('span');
+      var span_padre = dce('span');
+      var span_resource = dce('span');
+      var nombre_recurso = dce('span');
       //nombre_recurso.setAttribute('resource-id',e.id);
       nombre_recurso.innerHTML = "&nbsp &nbsp"+e.name+ '&nbsp &nbsp';
-      var btn_eliminar = document.createElement('input');
+      var btn_eliminar = dce('input');
       btn_eliminar.setAttribute('type','button');
       btn_eliminar.setAttribute('value','X');
       btn_eliminar.setAttribute('class','btn-resources');
+
       btn_eliminar.addEventListener('click',function(e){
         var parentSpan = e.target.parentNode;
         span_resources.removeChild(parentSpan);
@@ -109,23 +115,24 @@ var createHTMLPanel = function(indice) {
       span_resources.appendChild(span_padre);
     });
     div_recursos.setAttribute('class','bottom-text');
-    var toolTip = document.createElement('div');
+    var toolTip = dce('div');
     toolTip.setAttribute('class','tooltip');
-    var div_toolTip = document.createElement('div');
+    var div_toolTip = dce('div');
     div_toolTip.setAttribute('id','bubble');
     div_toolTip.setAttribute('class','tooltiptext');
     div_toolTip.setAttribute('id','tol'+indice);
-    var span_toolTip = document.createElement('span');
+    var span_toolTip = dce('span');
     span_toolTip.innerHTML ='(Separe multiple resources name with commas)';
-    var input_resource = document.createElement('input');
+    var input_resource = dce('input');
     input_resource.setAttribute('type','text');
     input_resource.setAttribute('class', "styleBox");
-    var btn_toolTip = document.createElement('button');
+    var btn_toolTip = dce('button');
     btn_toolTip.setAttribute('data-id',agentes[indice].id);
     btn_toolTip.setAttribute('class', "styleButton");
     btn_toolTip.innerHTML = "Add Resource";
     btn_toolTip.addEventListener('click', function(e) {
       e.preventDefault();
+
       var agregarRecursos = input_resource.value;
       if(agregarRecursos){
       var arrayRecursos = agregarRecursos.split(',');
@@ -135,30 +142,35 @@ var createHTMLPanel = function(indice) {
       for (var i in arrayRecursos) {
         var x= arrayRecursos[i];
         var y = x.trim();
-
-        document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,y,agente_id));
-        id++;
+        if(y){
+          document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,y,agente_id));
+          id++;
+        }else {
+          alert("No puede guardar un recurso vacío");
+        }
       }
+      input_resource.value="";
+
       }
       else {
         alert("Debe ingresar recursos");
       }
     });
-    var btn_toolClose = document.createElement('button');
+    var btn_toolClose = dce('button');
     btn_toolClose.setAttribute('class', "styleButton");
     btn_toolClose.innerHTML = "Close";
     btn_toolClose.addEventListener('click', function(e) {
       e.preventDefault();
       document.getElementById('tol'+indice).style.visibility = "hidden";
+
     });
     div_toolTip.appendChild(span_toolTip);
     div_toolTip.appendChild(input_resource);
     div_toolTip.appendChild(btn_toolTip);
     div_toolTip.appendChild(btn_toolClose);
     toolTip.appendChild(div_toolTip);
-    var agregar = document.createElement('input');
+    var agregar = dce('input');
     agregar.setAttribute('type','button');
-    agregar.setAttribute('class','styleSR')
     agregar.setAttribute('value','+ Specify Resources');
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
@@ -178,11 +190,11 @@ var createHTMLPanel = function(indice) {
 
 function addResourcesArray (i,nombre,id_agente){
   var nombre_recurso = document.getElementById('ar'+id_agente);
-  var span_padre = document.createElement('span');
-  var span_hijo = document.createElement('span');
+  var span_padre = dce('span');
+  var span_hijo = dce('span');
   //span_hijo.setAttribute('resource-id',i);
   span_hijo.innerHTML = "&nbsp &nbsp"+nombre+ '&nbsp &nbsp';
-  var btn = document.createElement('input');
+  var btn = dce('input');
   btn.setAttribute('type','button');
   btn.setAttribute('value','X');
   btn.setAttribute('class','btn-resources');
@@ -194,7 +206,7 @@ function addResourcesArray (i,nombre,id_agente){
   });
   span_padre.appendChild(span_hijo);
   span_padre.appendChild(btn);
-  console.log(span_padre);
+
   nombre_recurso.appendChild(span_padre);
   var obje = {name : nombre  }
   agentes[id_agente].recursos.push(obje);
