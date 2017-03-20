@@ -9,9 +9,6 @@
 //   var ingreso= document.getElementById("typeOfsigin");
 //   ingreso.textContent = localStorage.getItem("usuario-correo") ;
 
-
-
-
 function changeColorOfAgents(a,x,y){
   a.style.backgroundColor = "#e2d3d3";
   x.style.backgroundColor = "#9e9494";
@@ -103,7 +100,6 @@ var createHTMLPanel = function(indice) {
       btn_eliminar.setAttribute('value','X');
       btn_eliminar.addEventListener('click',function(e){
         var parentSpan = e.target.parentNode;
-        console.log(parentSpan);
         span_resources.removeChild(parentSpan);
         agentes[indice].recursos.splice(i,1);
       });
@@ -130,12 +126,20 @@ var createHTMLPanel = function(indice) {
     btn_toolTip.addEventListener('click', function(e) {
       e.preventDefault();
       var agregarRecursos = input_resource.value;
+      if(agregarRecursos){
       var arrayRecursos = agregarRecursos.split(',');
-       var agente_id = parseInt(e.target.getAttribute('data-id'));
+      var agente_id = parseInt(e.target.getAttribute('data-id')); //obtiene la posicion de mi div en el que me encuentro
+
       var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
       for (var i in arrayRecursos) {
-        document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,arrayRecursos[i],agente_id));
+        var x= arrayRecursos[i];
+        var y = x.trim();
+
+        document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,y,agente_id));
         id++;
+      }}
+      else {
+        alert("Debe ingresar recursos");
       }
     });
     var btn_toolClose = document.createElement('button');
@@ -155,7 +159,6 @@ var createHTMLPanel = function(indice) {
     agregar.setAttribute('value','+ Specify Resources');
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
-      console.log(document.getElementById('tol'+indice));
       document.getElementById('tol'+indice).style.visibility = "visible";
       // var y =document.getElementById('tol'+indice::after);
       // y.style.visibility = 'visible';
@@ -182,7 +185,6 @@ function addResourcesArray (i,nombre,id_agente){
   btn.addEventListener('click', function (e){
     var parentSpan = e.target.parentNode;
     nombre_recurso.removeChild(parentSpan);
-    console.log(i);
     agentes[id_agente].recursos.splice(i,1);
     // agentes[id_agente]
   });
@@ -196,7 +198,6 @@ function addResourcesArray (i,nombre,id_agente){
 document.getElementById("salir").addEventListener("click", function(){
     var xSalir ="";
     localStorage.setItem("usuario-correo", xSalir);
-    console.log("dddd"+xSalir);
     window.location = "login.html";
   });
 }
