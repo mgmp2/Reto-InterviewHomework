@@ -104,7 +104,6 @@ var createHTMLPanel = function(indice) {
       btn_eliminar.setAttribute('type','button');
       btn_eliminar.setAttribute('value','X');
       btn_eliminar.setAttribute('class','btn-resources');
-
       btn_eliminar.addEventListener('click',function(e){
         var parentSpan = e.target.parentNode;
         span_resources.removeChild(parentSpan);
@@ -172,6 +171,7 @@ var createHTMLPanel = function(indice) {
     var agregar = dce('input');
     agregar.setAttribute('type','button');
     agregar.setAttribute('value','+ Specify Resources');
+    agregar.setAttribute('class', 'btn-add-resources');
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
       document.getElementById('tol'+indice).style.visibility = "visible";

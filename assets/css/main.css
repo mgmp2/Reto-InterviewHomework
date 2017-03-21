@@ -41,6 +41,11 @@
     border-width: 1px;
     border-color: black;
   }
+  .btn-add-resources {
+    border-style: hidden;
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: underline;
+  }
   .panel-agents-building{
     background-color: #fcdd9f;
     width: 95%;
