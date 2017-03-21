@@ -1,4 +1,5 @@
-function validateForm(){
+document.getElementById("submit").addEventListener('click', function(e){
+  e.preventDefault();
 
     var nom   = document.getElementById("name");
     var ap    = document.getElementById("lastname");
@@ -55,5 +56,20 @@ function validateForm(){
     }
     else if(cont == 0){
       alert("Muy bien \n Lleno los datos correctamente");
+      agregarAgente(nom.value, ap.value, email.value, pas.value, op.value);
     }
+});
+
+var agentes_n = [];
+function Agente (nom, ap, correo, contra, tipo){
+  this.nombre = nom;
+  this.apellido = ap;
+  this.email = correo;
+  this.password= contra;
+  this.type = tipo;
 }
+
+function agregarAgente(n,a,c,p,t){
+
+  agentes_n.push(new Agente(n, a ,c ,p, t));
+};
