@@ -39,3 +39,7 @@ document.getElementById("mostrarDatos").addEventListener('click', function (){
   }
 
 });
+document.getElementById("register").addEventListener('click', function(e) {
+  e.preventDefault();
+	window.location = "formulario.html";
+});

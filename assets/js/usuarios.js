@@ -1,7 +1,7 @@
 
-var usuarios = [ {email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
-                 {email : "naomi@gmail.com", password : "12345678" , type : 'Publico' },
-                 {email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
+var usuarios = [ {nombre: "Flor",apellido: "Tello Lala", email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
+                 {nombre:"Naomi" ,apellido: "Lagos Lwww",email :"naomi@gmail.com", password : "12345678" , type : 'Public' },
+                 {nombre:"Emma" ,apellido: "Flores Ross",email :"emma@gmail.com" , password : "12345678" , type : 'Public' }];
 
 var agentes = [
 
