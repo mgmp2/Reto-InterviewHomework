@@ -85,12 +85,14 @@ document.getElementById("submit").addEventListener('click', function(e){
 
       nom_conv = convertirMayMin(nom.value);
       ape_conv =convertirMayMin(ap.value);
-      agregarAgente( nom_conv, ape_conv, email.value, pas.value, op.value);
+      agregarUsuario( nom_conv, ape_conv, email.value, pas.value, op.value);
     }
 });
 
 var usuario = [];
-function Agente ( nom, ap, correo, contra, tipo){
+
+
+function Usuario ( nom, ap, correo, contra, tipo){
   // this.id = id;
   this.nombre = nom;
   this.apellido = ap;
@@ -99,8 +101,8 @@ function Agente ( nom, ap, correo, contra, tipo){
   this.type = tipo;
 }
 
-function agregarAgente(n,a,c,p,t){
-   usuario.push(new Agente(n, a ,c ,p, t));
+function agregarUsuario(n,a,c,p,t){
+   usuario.push(new Usuario(n, a ,c ,p, t));
   cleanInput( nom, ap, email, pas, op);
 
       var key = c;
