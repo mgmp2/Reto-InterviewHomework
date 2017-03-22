@@ -18,6 +18,7 @@ function changeColorOfAgents(a,x,y){
 function dce(e){
   return document.createElement(e);
 
+
 }
 var ejecutar = function(){
   var btnPhysical = document.getElementById('btnPhysical');
