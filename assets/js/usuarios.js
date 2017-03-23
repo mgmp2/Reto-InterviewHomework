@@ -1,7 +1,7 @@
-
-var usuarios = [ {email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
-                 {email : "naomi@gmail.com", password : "12345678" , type : 'Publico' },
-                 {email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
+//
+// var usuarios = [ {email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
+//                  {email : "naomi@gmail.com", password : "12345678" , type : 'Publico' },
+//                  {email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
 
 var agentes = [
 

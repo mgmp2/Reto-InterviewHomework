@@ -35,7 +35,15 @@ document.getElementById("mostrarDatos").addEventListener('click', function (){
   	passError.innerHTML = "";
   	emailError.innerHTML= "";
 
-  	validarCuentas(correo.value, contra.value);
+  	// validarCuentas(correo.value, contra.value); por ahora no usaremos es de un archivo validarCuentas.js
+
+		findUserStorage(correo.value, contra.value);
+
+
   }
 
+});
+document.getElementById("register").addEventListener('click', function(e) {
+  e.preventDefault();
+	window.location = "formulario.html";
 });
