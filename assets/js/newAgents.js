@@ -1,9 +1,3 @@
-
-
-// var usuarios = [ {nombre: "Flor",apellido: "Tello Lala", email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
-//                  {nombre:"Naomi" ,apellido: "Lagos Lwww",email :"naomi@gmail.com", password : "12345678" , type : 'Public' },
-//                  {nombre:"Emma" ,apellido: "Flores Ross",email :"emma@gmail.com" , password : "12345678" , type : 'Public' }];
-
 var agentes = [
 
 	{ id : 0 , tipo: 'fisico', url : 'bjstdmngbgr02.thoughtworks.com' , estado : 'idle' , direccionIP: '192.168.1.2' , directorio : '/var/lib/cruise-agent', recursos : [{name:'Ubuntu'},{name:'firefox'},{name:'core-duo'}]},
@@ -15,3 +9,27 @@ var agentes = [
 	{ id : 6 , tipo: 'virtual', url : 'bjstdmngbgr07.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.8' , directorio : '/var/lib/cruise-agent', recursos : [{name:'core-duo'}]}
 
 ]
+
+var agente =[];
+
+function Agente(id, t, u, s, ip, dir, array){
+  this.id= id;
+  this.tipo= t;
+  this.url = u;
+  this.estado= s;
+  this.dirrecionIP= ip;
+  this.directorio= dir;
+  this.recursos = array;
+}
+
+function agregarAgente(id_agente, tipo, url, estado, direccionIp, directorio, recursos){
+   agente.push(new Agente(id_agente, tipo, url, estado, direccionIp, directorio, recursos));
+      var key = id_agente; //faltaaaaa alagoooo aquiiiiiii
+      for(var i = 0; i< agente.length; i++){
+        if(key=== agente[i].id){
+          var datos = JSON.stringify(usuario[i]);
+          localStorage.setItem(key, datos);
+        }
+
+      }
+};
