@@ -17,7 +17,6 @@ function changeColorOfAgents(a,x,y){
 
 function dce(e){
   return document.createElement(e);
-
 }
 var ejecutar = function(){
   var btnPhysical = document.getElementById('btnPhysical');
@@ -66,7 +65,7 @@ btnVirtual.addEventListener('click',function(e){
 
 var mostrarAgentes = function(array,elemento){
     for (var i = 0; i < array.length; i++) {
-        elemento.appendChild(createHTMLPanel(i));
+        elemento.appendChild(createHTMLPanel(array[i].id)); //Se envía el id del agentes
     }
 }
 function summary(element,clase){
@@ -76,48 +75,57 @@ function summary(element,clase){
 }
 
 var createHTMLPanel = function(indice) {
-    var recursos_agentes = agentes[indice].recursos.map(e => e);
+
     var panel = dce('div');
-    if(agentes[indice].estado == 'idle') {
+    if(agentes[indice].estado == 'idle') { //Se asigna class segun estado(idle or building);
+      panel.setAttribute('id',indice);
       panel.setAttribute('class','panel-agents-idle');
     } else {
+      panel.setAttribute('id',indice);
       panel.setAttribute('class','panel-agents-building');
     }
+    //Se crea el Circulo y se asigna class
     var span_circulo = dce('span');
     span_circulo.setAttribute('class','circle');
+
     var div_agents = dce('div');
     div_agents.setAttribute('class','top-text');
+
     var span_dominio = dce('span');
     span_dominio.innerHTML = agentes[indice].url + "&emsp;|&nbsp "+agentes[indice].estado + "&nbsp|&nbsp"+ agentes[indice].direccionIP +  "&nbsp|&nbsp"+ agentes[indice].directorio;
     div_agents.appendChild(span_dominio);
-    var div_recursos = dce('p');
-    div_recursos.setAttribute('id',indice);
+
     var span_resources = dce('span');
     span_resources.setAttribute('id','ar'+indice)
+
+    var recursos_agentes = agentes[indice].recursos.map(e => e); // Arreglo del atributo Recursos
     recursos_agentes.map(function(e,i){
       var span_padre = dce('span');
-      var span_resource = dce('span');
       var nombre_recurso = dce('span');
-      //nombre_recurso.setAttribute('resource-id',e.id);
       nombre_recurso.innerHTML = "&nbsp &nbsp"+e.name+ '&nbsp &nbsp';
       var btn_eliminar = dce('input');
       btn_eliminar.setAttribute('type','button');
       btn_eliminar.setAttribute('value','X');
       btn_eliminar.setAttribute('class','btn-resources');
       btn_eliminar.addEventListener('click',function(e){
-        var parentSpan = e.target.parentNode;
-        span_resources.removeChild(parentSpan);
-        agentes[indice].recursos.splice(i,1);
+        console.log(e);
+        console.log(e.target.parentNode.nam);
+        var parentSpan = e.target.parentNode; //obtiene el span_padre del Boton eliminar
+        span_resources.removeChild(parentSpan); //Remueve el span_padre del span_resources
+        agentes[indice].recursos.splice(i,1); //Elimina del objeto agente del atributo recurso
       });
       span_padre.appendChild(nombre_recurso);
       span_padre.appendChild(btn_eliminar);
       span_resources.appendChild(span_padre);
     });
+
+    var div_recursos = dce('p');
     div_recursos.setAttribute('class','bottom-text');
+
     var toolTip = dce('div');
     toolTip.setAttribute('class','tooltip');
+
     var div_toolTip = dce('div');
-    div_toolTip.setAttribute('id','bubble');
     div_toolTip.setAttribute('class','tooltiptext');
     div_toolTip.setAttribute('id','tol'+indice);
     var span_toolTip = dce('span');
@@ -160,7 +168,8 @@ var createHTMLPanel = function(indice) {
     btn_toolClose.innerHTML = "Close";
     btn_toolClose.addEventListener('click', function(e) {
       e.preventDefault();
-      document.getElementById('tol'+indice).style.visibility = "hidden";
+    //document.getElementById('tol'+indice).style.visibility = "hidden";
+    document.getElementById('tol'+indice).classList.toggle("active");
 
     });
     div_toolTip.appendChild(span_toolTip);
@@ -174,9 +183,10 @@ var createHTMLPanel = function(indice) {
     agregar.setAttribute('class', 'btn-add-resources');
     agregar.addEventListener('click',function(e) {
       e.preventDefault();
-      document.getElementById('tol'+indice).style.visibility = "visible";
+      //document.getElementById('tol'+indice).style.visibility = "visible";
       // var y =document.getElementById('tol'+indice::after);
       // y.style.visibility = 'visible';
+      document.getElementById('tol'+indice).classList.toggle("active");
     });
     div_recursos.appendChild(agregar);
     div_recursos.appendChild(span_resources);

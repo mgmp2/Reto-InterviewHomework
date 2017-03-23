@@ -252,16 +252,16 @@ ul.menu li a.active {background-color: white;}
     padding: 5px 0;
     position: absolute;
 }
-
-
-#tol0::before,  #tol1::before, #tol2::before, #tol3::before,
-#tol4::before, #tol5::before, #tol6::before, #tol7::before {
-    width: 28px;
-    height: 28px;
-    background-color:#65a064;
-    position: absolute;
-    transform: rotate(45deg);
-    margin-top: -2.8%;
-    left: 5%;
-    content: "";
+.tooltip .active {
+  visibility: visible;
+}
+.tooltip .tooltiptext::before {
+  width: 28px;
+  height: 28px;
+  background-color:#65a064;
+  position: absolute;
+  transform: rotate(45deg);
+  margin-top: -2.8%;
+  left: 5%;
+  content: "";
 }
