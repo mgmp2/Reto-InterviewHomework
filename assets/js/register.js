@@ -89,8 +89,6 @@ document.getElementById("submit").addEventListener('click', function(e){
     }
 });
 
-var usuario = [];
-
 
 function Usuario ( nom, ap, correo, contra, tipo){
   // this.id = id;
@@ -100,6 +98,7 @@ function Usuario ( nom, ap, correo, contra, tipo){
   this.password= contra;
   this.type = tipo;
 }
+var usuario = [];
 
 function agregarUsuario(n,a,c,p,t){
    usuario.push(new Usuario(n, a ,c ,p, t));
