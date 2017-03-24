@@ -255,6 +255,9 @@ ul.menu li a.active {background-color: white;}
 .tooltip .active {
   visibility: visible;
 }
+.tooltip .unactive {
+  visibility: hidden;
+}
 .tooltip .tooltiptext::before {
   width: 28px;
   height: 28px;

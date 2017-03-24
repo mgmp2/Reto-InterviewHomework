@@ -17,16 +17,14 @@ function changeColorOfAgents(a,x,y){
 
 function dce(e){
   return document.createElement(e);
-
-
-
 }
+
 var ejecutar = function(){
-  var btnPhysical = document.getElementById('btnPhysical');
-  var btnVirtual = document.getElementById('btnVirtual');
+  var btnPhysical   = document.getElementById('btnPhysical');
+  var btnVirtual    = document.getElementById('btnVirtual');
   var content_agent = document.getElementById('content-left');
   document.getElementById('btnAgents').addEventListener('click',function(e){
-    var x = document.getElementById("btnAgents");
+    var x   = document.getElementById("btnAgents");
     x.style.backgroundColor = "gray";
     e.preventDefault();
     var header_agents = document.getElementById('header-agents');
@@ -37,7 +35,7 @@ btnAll.addEventListener('click',function(e){
   content_agent.innerHTML = "";
   changeColorOfAgents(btnAll, btnPhysical,btnVirtual);
   e.preventDefault();
-  mostrarAgentes(agente_LS,content_agent);
+  mostrarAgentes(agente_LS, content_agent);
   summary('total-building','panel-agents-building');
   summary('total-idle','panel-agents-idle');
   document.getElementById('content-right').style.display = "block";
@@ -102,22 +100,23 @@ var createHTMLPanel = function(indice) {
     span_resources.setAttribute('id','ar'+indice)
 
     var recursos_agentes = agente_LS[indice].recursos.map(e => e); // Arreglo del atributo Recursos
-    recursos_agentes.map(function(e,i){
+
+    agente_LS[indice].recursos.map(function(a,i){
       var span_padre = dce('span');
+      span_padre.setAttribute('id', 'idRec'+i)
       var nombre_recurso = dce('span');
-      nombre_recurso.innerHTML = "&nbsp &nbsp"+e.name+ '&nbsp &nbsp';
+      nombre_recurso.innerHTML = "&nbsp &nbsp"+a+ '&nbsp &nbsp';
       var btn_eliminar = dce('input');
       btn_eliminar.setAttribute('type','button');
       btn_eliminar.setAttribute('value','X');
       btn_eliminar.setAttribute('class','btn-resources');
       btn_eliminar.addEventListener('click',function(e){
-        console.log(e);
-        console.log(e.target.parentNode.nam);
+        console.log(a);
         var parentSpan = e.target.parentNode; //obtiene el span_padre del Boton eliminar
         span_resources.removeChild(parentSpan); //Remueve el span_padre del span_resources
-        debugger;
-        agente_LS[indice].recursos.splice(i,1); //Elimina del objeto agente del atributo recurso
-        console.log(i);
+        var eliminar = agente_LS[indice].recursos.indexOf(a)
+        console.log(agente_LS[indice].recursos.indexOf(a));
+        agente_LS[indice].recursos.splice(eliminar,1); //Elimina del objeto agente del atributo recurso
         localStorage.setItem('agentes',JSON.stringify(agente_LS));
       });
       span_padre.appendChild(nombre_recurso);
@@ -127,6 +126,7 @@ var createHTMLPanel = function(indice) {
 
     var div_recursos = dce('p');
     div_recursos.setAttribute('class','bottom-text');
+    div_recursos.setAttribute('id','R' + indice);
 
     var toolTip = dce('div');
     toolTip.setAttribute('class','tooltip');
@@ -145,7 +145,6 @@ var createHTMLPanel = function(indice) {
     btn_toolTip.innerHTML = "Add Resource";
     btn_toolTip.addEventListener('click', function(e) {
       e.preventDefault();
-
       var agregarRecursos = input_resource.value;
       if(agregarRecursos){
       var arrayRecursos = agregarRecursos.split(',');
@@ -153,16 +152,15 @@ var createHTMLPanel = function(indice) {
 
       var id = agente_LS[parseInt(e.target.getAttribute('data-id'))].recursos.length;
       for (var i in arrayRecursos) {
-        var y= arrayRecursos[i].trim();
-        if(y){
-          document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,y,agente_id));
+        if(arrayRecursos[i].trim()){
+          document.getElementById('R'+indice).appendChild(addResourcesArray(id,arrayRecursos[i].trim(),agente_id));
+          document.getElementById('tol'+indice).classList.remove("active");
           id++;
         }else {
           alert("No puede guardar un recurso vacío");
         }
       }
       input_resource.value="";
-
       }
       else {
         alert("Debe ingresar recursos");
@@ -207,7 +205,7 @@ function addResourcesArray (i,nombre,id_agente){
   var nombre_recurso = document.getElementById('ar'+id_agente);
   var span_padre = dce('span');
   var span_hijo = dce('span');
-  //span_hijo.setAttribute('resource-id',i);
+  span_padre.setAttribute('id','idRec'+i );
   span_hijo.innerHTML = "&nbsp &nbsp"+nombre+ '&nbsp &nbsp';
   var btn = dce('input');
   btn.setAttribute('type','button');
@@ -216,17 +214,15 @@ function addResourcesArray (i,nombre,id_agente){
   btn.addEventListener('click', function (e){
     var parentSpan = e.target.parentNode;
     nombre_recurso.removeChild(parentSpan);
-    agente_LS[id_agente].recursos.splice(i,1);
+    var eliminar = agente_LS[id_agente].recursos.indexOf(nombre);
+    agente_LS[id_agente].recursos.splice(eliminar,1);
     localStorage.setItem('agentes',JSON.stringify(agente_LS));
-    // agentes[id_agente]
   });
   span_padre.appendChild(span_hijo);
   span_padre.appendChild(btn);
-
+console.log(span_padre);
   nombre_recurso.appendChild(span_padre);
-  var obje = {name : nombre}
-  agente_LS[id_agente].recursos.push(obje);
-  console.log(agente_LS);
+  agente_LS[id_agente].recursos.push(nombre);
   localStorage.setItem('agentes',JSON.stringify(agente_LS));
   return nombre_recurso;
 }
@@ -236,11 +232,4 @@ document.getElementById("salir").addEventListener("click", function(){
     window.location = "login.html";
   });
 }
-
-// }
-  // else{
-  //   alert("Debe ingresar");
-  //   x.style.display = "none";
-  //   window.location = "login.html";
-  // }
 ejecutar();
