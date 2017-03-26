@@ -81,11 +81,11 @@ document.getElementById("submit").addEventListener('click', function(e){
     }
 
     else if(cont == 0){
-      console.log("todo correcto");
 
       nom_conv = convertirMayMin(nom.value);
       ape_conv =convertirMayMin(ap.value);
       agregarUsuario( nom_conv, ape_conv, email.value, pas.value, op.value);
+      alert("Muy bien \nAhora puede iniciar sesión");
     }
 });
 
