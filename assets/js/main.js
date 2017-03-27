@@ -235,3 +235,7 @@ document.getElementById("salir").addEventListener("click", function(){
   });
 }
 ejecutar();
+
+if(typeof exports !== 'undefined') {
+  exports.ejecutar = ejecutar;
+}
