@@ -35,11 +35,8 @@ btnAll.addEventListener('click',function(e){
   content_agent.innerHTML = "";
   changeColorOfAgents(btnAll, btnPhysical,btnVirtual);
   e.preventDefault();
-<<<<<<< HEAD
-  mostrarAgentes(agente_LS, content_agent);
-=======
+
   mostrarAgentes(agentes,content_agent);
->>>>>>> LocalStorage
   summary('total-building','panel-agents-building');
   summary('total-idle','panel-agents-idle');
   document.getElementById('content-right').style.display = "block";
@@ -123,14 +120,11 @@ var createHTMLPanel = function(indice) {
         console.log(a);
         var parentSpan = e.target.parentNode; //obtiene el span_padre del Boton eliminar
         span_resources.removeChild(parentSpan); //Remueve el span_padre del span_resources
-<<<<<<< HEAD
         var eliminar = agente_LS[indice].recursos.indexOf(a)
         console.log(agente_LS[indice].recursos.indexOf(a));
         agente_LS[indice].recursos.splice(eliminar,1); //Elimina del objeto agente del atributo recurso
         localStorage.setItem('agentes',JSON.stringify(agente_LS));
-=======
-        agentes[indice].recursos.splice(i,1); //Elimina del objeto agente del atributo recurso
->>>>>>> LocalStorage
+
       });
       span_padre.appendChild(nombre_recurso);
       span_padre.appendChild(btn_eliminar);
@@ -165,15 +159,10 @@ var createHTMLPanel = function(indice) {
 
       var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
       for (var i in arrayRecursos) {
-<<<<<<< HEAD
         if(arrayRecursos[i].trim()){
           document.getElementById('R'+indice).appendChild(addResourcesArray(id,arrayRecursos[i].trim(),agente_id));
           document.getElementById('tol'+indice).classList.remove("active");
-=======
-        var x= arrayRecursos[i].trim();
-        if(x){
-          document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,x,agente_id));
->>>>>>> LocalStorage
+
           id++;
         }else {
           alert("No puede guardar un recurso vacío");
@@ -233,26 +222,17 @@ function addResourcesArray (i,nombre,id_agente){
   btn.addEventListener('click', function (e){
     var parentSpan = e.target.parentNode;
     nombre_recurso.removeChild(parentSpan);
-<<<<<<< HEAD
     var eliminar = agente_LS[id_agente].recursos.indexOf(nombre);
     agente_LS[id_agente].recursos.splice(eliminar,1);
     localStorage.setItem('agentes',JSON.stringify(agente_LS));
-=======
-    agentes[id_agente].recursos.splice(i,1);
-    // agentes[id_agente]
->>>>>>> LocalStorage
   });
   span_padre.appendChild(span_hijo);
   span_padre.appendChild(btn);
 console.log(span_padre);
   nombre_recurso.appendChild(span_padre);
-<<<<<<< HEAD
   agente_LS[id_agente].recursos.push(nombre);
   localStorage.setItem('agentes',JSON.stringify(agente_LS));
-=======
-  var obje = {name : nombre  }
-  agentes[id_agente].recursos.push(obje);
->>>>>>> LocalStorage
+
   return nombre_recurso;
 }
 document.getElementById("salir").addEventListener("click", function(){
