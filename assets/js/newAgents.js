@@ -30,6 +30,5 @@ function agregarAgente(id_agente, tipo, url, estado, direccionIp, directorio, re
           var datos = JSON.stringify(usuario[i]);
           localStorage.setItem(key, datos);
         }
-
       }
 };

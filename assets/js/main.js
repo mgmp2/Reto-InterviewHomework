@@ -35,7 +35,11 @@ btnAll.addEventListener('click',function(e){
   content_agent.innerHTML = "";
   changeColorOfAgents(btnAll, btnPhysical,btnVirtual);
   e.preventDefault();
+<<<<<<< HEAD
   mostrarAgentes(agente_LS, content_agent);
+=======
+  mostrarAgentes(agentes,content_agent);
+>>>>>>> LocalStorage
   summary('total-building','panel-agents-building');
   summary('total-idle','panel-agents-idle');
   document.getElementById('content-right').style.display = "block";
@@ -45,7 +49,7 @@ btnPhysical.addEventListener('click',function(e){
   e.preventDefault();
   changeColorOfAgents(btnPhysical,btnAll, btnVirtual);
   content_agent.innerHTML = "";
-  var agentes_fisicos = agente_LS.filter(e => e.tipo == 'fisico');
+  var agentes_fisicos = agentes.filter(e => e.tipo == 'fisico');
   mostrarAgentes(agentes_fisicos,content_agent);
   summary('total-building','panel-agents-building');
   summary('total-idle','panel-agents-idle');
@@ -56,7 +60,7 @@ btnVirtual.addEventListener('click',function(e){
   e.preventDefault();
   changeColorOfAgents(btnVirtual, btnAll, btnPhysical);
   content_agent.innerHTML = "";
-  var agentes_virtuales = agente_LS.filter(e => e.tipo == 'virtual');
+  var agentes_virtuales = agentes.filter(e => e.tipo == 'virtual');
       mostrarAgentes(agentes_virtuales,content_agent);
       summary('total-building','panel-agents-building');
       summary('total-idle','panel-agents-idle');
@@ -78,7 +82,7 @@ function summary(element,clase){
 var createHTMLPanel = function(indice) {
 
     var panel = dce('div');
-    if(agente_LS[indice].estado == 'idle') { //Se asigna class segun estado(idle or building);
+    if(agentes[indice].estado == 'idle') { //Se asigna class segun estado(idle or building);
       panel.setAttribute('id',indice);
       panel.setAttribute('class','panel-agents-idle');
     } else {
@@ -93,15 +97,20 @@ var createHTMLPanel = function(indice) {
     div_agents.setAttribute('class','top-text');
 
     var span_dominio = dce('span');
-    span_dominio.innerHTML = agente_LS[indice].url + "&emsp;|&nbsp "+agente_LS[indice].estado + "&nbsp|&nbsp"+ agente_LS[indice].direccionIP +  "&nbsp|&nbsp"+ agente_LS[indice].directorio;
+    span_dominio.innerHTML = agentes[indice].url + "&emsp;|&nbsp "+agentes[indice].estado + "&nbsp|&nbsp"+ agentes[indice].direccionIP +  "&nbsp|&nbsp"+ agentes[indice].directorio;
     div_agents.appendChild(span_dominio);
 
     var span_resources = dce('span');
     span_resources.setAttribute('id','ar'+indice)
 
+<<<<<<< HEAD
     var recursos_agentes = agente_LS[indice].recursos.map(e => e); // Arreglo del atributo Recursos
 
     agente_LS[indice].recursos.map(function(a,i){
+=======
+    var recursos_agentes = agentes[indice].recursos.map(e => e); // Arreglo del atributo Recursos
+    recursos_agentes.map(function(e,i){
+>>>>>>> LocalStorage
       var span_padre = dce('span');
       span_padre.setAttribute('id', 'idRec'+i)
       var nombre_recurso = dce('span');
@@ -114,10 +123,14 @@ var createHTMLPanel = function(indice) {
         console.log(a);
         var parentSpan = e.target.parentNode; //obtiene el span_padre del Boton eliminar
         span_resources.removeChild(parentSpan); //Remueve el span_padre del span_resources
+<<<<<<< HEAD
         var eliminar = agente_LS[indice].recursos.indexOf(a)
         console.log(agente_LS[indice].recursos.indexOf(a));
         agente_LS[indice].recursos.splice(eliminar,1); //Elimina del objeto agente del atributo recurso
         localStorage.setItem('agentes',JSON.stringify(agente_LS));
+=======
+        agentes[indice].recursos.splice(i,1); //Elimina del objeto agente del atributo recurso
+>>>>>>> LocalStorage
       });
       span_padre.appendChild(nombre_recurso);
       span_padre.appendChild(btn_eliminar);
@@ -140,7 +153,7 @@ var createHTMLPanel = function(indice) {
     input_resource.setAttribute('type','text');
     input_resource.setAttribute('class', "styleBox");
     var btn_toolTip = dce('button');
-    btn_toolTip.setAttribute('data-id',agente_LS[indice].id);
+    btn_toolTip.setAttribute('data-id',agentes[indice].id);
     btn_toolTip.setAttribute('class', "styleButton");
     btn_toolTip.innerHTML = "Add Resource";
     btn_toolTip.addEventListener('click', function(e) {
@@ -150,11 +163,17 @@ var createHTMLPanel = function(indice) {
       var arrayRecursos = agregarRecursos.split(',');
       var agente_id = parseInt(e.target.getAttribute('data-id')); //obtiene la posicion de mi div en el que me encuentro
 
-      var id = agente_LS[parseInt(e.target.getAttribute('data-id'))].recursos.length;
+      var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
       for (var i in arrayRecursos) {
+<<<<<<< HEAD
         if(arrayRecursos[i].trim()){
           document.getElementById('R'+indice).appendChild(addResourcesArray(id,arrayRecursos[i].trim(),agente_id));
           document.getElementById('tol'+indice).classList.remove("active");
+=======
+        var x= arrayRecursos[i].trim();
+        if(x){
+          document.getElementById(e.target.getAttribute('data-id')).appendChild(addResourcesArray(id,x,agente_id));
+>>>>>>> LocalStorage
           id++;
         }else {
           alert("No puede guardar un recurso vacío");
@@ -214,16 +233,26 @@ function addResourcesArray (i,nombre,id_agente){
   btn.addEventListener('click', function (e){
     var parentSpan = e.target.parentNode;
     nombre_recurso.removeChild(parentSpan);
+<<<<<<< HEAD
     var eliminar = agente_LS[id_agente].recursos.indexOf(nombre);
     agente_LS[id_agente].recursos.splice(eliminar,1);
     localStorage.setItem('agentes',JSON.stringify(agente_LS));
+=======
+    agentes[id_agente].recursos.splice(i,1);
+    // agentes[id_agente]
+>>>>>>> LocalStorage
   });
   span_padre.appendChild(span_hijo);
   span_padre.appendChild(btn);
 console.log(span_padre);
   nombre_recurso.appendChild(span_padre);
+<<<<<<< HEAD
   agente_LS[id_agente].recursos.push(nombre);
   localStorage.setItem('agentes',JSON.stringify(agente_LS));
+=======
+  var obje = {name : nombre  }
+  agentes[id_agente].recursos.push(obje);
+>>>>>>> LocalStorage
   return nombre_recurso;
 }
 document.getElementById("salir").addEventListener("click", function(){
