@@ -100,14 +100,7 @@ var createHTMLPanel = function(indice) {
     var span_resources = dce('span');
     span_resources.setAttribute('id','ar'+indice)
 
-<<<<<<< HEAD
-    var recursos_agentes = agente_LS[indice].recursos.map(e => e); // Arreglo del atributo Recursos
-
     agente_LS[indice].recursos.map(function(a,i){
-=======
-    var recursos_agentes = agentes[indice].recursos.map(e => e); // Arreglo del atributo Recursos
-    recursos_agentes.map(function(e,i){
->>>>>>> LocalStorage
       var span_padre = dce('span');
       span_padre.setAttribute('id', 'idRec'+i)
       var nombre_recurso = dce('span');
