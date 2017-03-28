@@ -71,6 +71,8 @@ var mostrarAgentes = function(array,elemento){
     }
 }
 function summary(element,clase){
+  // total_building = lugar donde muestra
+  //total = identifica cantidad de agente(clase) ya sea por  fisico o virtual
   var total_building = document.getElementById(element);
   var total = document.getElementsByClassName(clase).length;
   total_building.innerHTML = total;
