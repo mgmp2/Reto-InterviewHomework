@@ -1,9 +1,10 @@
 var agente_LS;
-// var usuario = [ {email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
-//                  {email : "naomi@gmail.com", password : "12345678" , type : 'Publico' },
-//                  {email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
-localStorage.setItem( "flor@gmail.com",JSON.stringify({email : "flor@gmail.com" , password : "12345678" , type : 'Member' }));
-localStorage.setItem( "miriam@gmail.com",JSON.stringify({email : "miriam@gmail.com", password : "12345678" , type : 'Publico' }));
+var usuario = [ {email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
+                 {email : "miriam@gmail.com", password : "12345678" , type : 'Member' },
+                 {email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
+								 
+localStorage.setItem( "flor@gmail.com",JSON.stringify(usuario[0]));
+localStorage.setItem( "miriam@gmail.com",JSON.stringify(usuario[1]));
 
 var agentes = [
 
