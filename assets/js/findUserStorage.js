@@ -1,16 +1,14 @@
 
-function findUserStorage(a, b) {
-
+function findUserStorage(a, b) { //ingresa mi correo y pass del login
+  var cont= 0;
+  var m ="";
   // console.log("cuenta: "+ cuenta);
-var cuenta = mostrar(a);
-var cont=0;
-var m="";
-
-    if (a == cuenta.email && b == cuenta.password) {
+  usuario_LS.filter(function (e){
+    if (a == e.email&& b == e.password) {
   		cont++;
-      m = cuenta.type;
-      console.log(m); // me retorna : member o publico
+      m = e.type;
   	}
+  });
     if(cont == 1) {
       localStorage.setItem("usuario-correo", m);
       window.location="index.html";
@@ -20,11 +18,11 @@ var m="";
     }
   }
 
-  function mostrar(a){
-    var datos = localStorage.getItem(a); // aqui obtiene en arreglos
-    var agentes_storage="";
-     if (datos != null){
-       agentes_storage =  JSON.parse(datos);
-     }
-     return agentes_storage;// los lleva a string
-  }
+  // function mostrar(a){
+  //   // var datos = localStorage.getItem(); // aqui obtiene en arreglos
+  //   var agentes_storage="";
+  //    if (usuario_LS != null){
+  //      agentes_storage =  JSON.parse(datos);
+  //    }
+  //    return agentes_storage;// los lleva a string
+  // }
