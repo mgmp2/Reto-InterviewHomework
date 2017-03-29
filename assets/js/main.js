@@ -8,12 +8,16 @@
 //   console.log(localStorage.getItem("usuario-correo"));
 //   var ingreso= document.getElementById("typeOfsigin");
 //   ingreso.textContent = localStorage.getItem("usuario-correo") ;
+var app = new recurso();
+app.Agente();
 window.addEventListener('load', function(){
   var btnPhysical   = document.getElementById('btnPhysical');
   var btnVirtual    = document.getElementById('btnVirtual');
   var content_agent = document.getElementById('content-left');
 
+
   btnAgents.addEventListener('click',function(e){
+    app.Agente();
     e.preventDefault();
     this.style.backgroundColor = "gray";
     var header_agents = document.getElementById('header-agents');
@@ -23,7 +27,7 @@ window.addEventListener('load', function(){
       content_agent.innerHTML = "";
       changeColorOfAgents(btnAll, btnPhysical,btnVirtual);
       e.preventDefault();
-      mostrarAgentes(agentes,content_agent);
+      mostrarAgentes(agente_LS,content_agent);
       summary('total-building','panel-agents-building');
       summary('total-idle','panel-agents-idle');
       document.getElementById('content-right').style.display = "block";
@@ -33,7 +37,7 @@ window.addEventListener('load', function(){
       e.preventDefault();
       changeColorOfAgents(btnPhysical,btnAll, btnVirtual);
       content_agent.innerHTML = "";
-      var agentes_fisicos = agentes.filter(e => e.tipo == 'fisico');
+      var agentes_fisicos = agente_LS.filter(e => e.tipo == 'fisico');
       mostrarAgentes(agentes_fisicos,content_agent);
       summary('total-building','panel-agents-building');
       summary('total-idle','panel-agents-idle');
@@ -44,7 +48,7 @@ window.addEventListener('load', function(){
       e.preventDefault();
       changeColorOfAgents(btnVirtual, btnAll, btnPhysical);
       content_agent.innerHTML = "";
-      var agentes_virtuales = agentes.filter(e => e.tipo == 'virtual');
+      var agentes_virtuales = agente_LS.filter(e => e.tipo == 'virtual');
           mostrarAgentes(agentes_virtuales,content_agent);
           summary('total-building','panel-agents-building');
           summary('total-idle','panel-agents-idle');
@@ -55,9 +59,12 @@ window.addEventListener('load', function(){
 });
 
 function mostrarAgentes(array,elemento){
-    for (var i = 0; i < array.length; i++) {
-        elemento.appendChild(createHTMLPanel(array[i].id)); //Se envía el id del agentes
-    }
+    // for (var i = 0; i < array.length; i++) {
+    //     elemento.appendChild(createHTMLPanel(array[i].id,)); //Se envía el id del agentes
+    // }
+    array.map(function(e,i){
+      elemento.appendChild(createHTMLPanel(e.id));
+    });
 };
 
 function summary(element,clase){
@@ -68,7 +75,7 @@ function summary(element,clase){
 
 function createHTMLPanel(indice) {
     var panel = dce('div');
-    if(agentes[indice].estado == 'idle') { //Se asigna class segun estado(idle or building);
+    if(agente_LS[indice].estado == 'idle') { //Se asigna class segun estado(idle or building);
         panel.setAttribute('id',indice);
         panel.setAttribute('class','panel-agents-idle');
     } else {
@@ -83,7 +90,7 @@ function createHTMLPanel(indice) {
     div_agents.setAttribute('class','top-text');
 
     var span_dominio = dce('span');
-    span_dominio.innerHTML = agentes[indice].url + "&emsp;|&nbsp "+agentes[indice].estado + "&nbsp|&nbsp"+ agentes[indice].direccionIP +  "&nbsp|&nbsp"+ agentes[indice].directorio;
+    span_dominio.innerHTML = agente_LS[indice].url + "&emsp;|&nbsp "+agente_LS[indice].estado + "&nbsp|&nbsp"+ agente_LS[indice].direccionIP +  "&nbsp|&nbsp"+ agente_LS[indice].directorio;
     div_agents.appendChild(span_dominio);
 
     var span_resources = dce('span');
@@ -91,21 +98,25 @@ function createHTMLPanel(indice) {
 
     agente_LS[indice].recursos.map(function(a,i){
         var span_padre = dce('span');
-        span_padre.setAttribute('id', 'idRec'+i)
+        span_padre.setAttribute('id', 'R'+i);
         var nombre_recurso = dce('span');
-        nombre_recurso.innerHTML = "&nbsp &nbsp"+a+ '&nbsp &nbsp';
+        nombre_recurso.innerHTML = "&nbsp &nbsp"+a.nombre+ '&nbsp &nbsp';
         var btn_eliminar = dce('input');
         btn_eliminar.setAttribute('type','button');
         btn_eliminar.setAttribute('value','X');
         btn_eliminar.setAttribute('class','btn-resources');
 
         btn_eliminar.addEventListener('click',function(e){
-            console.log(a);
+            console.log(a.nombre);
             var parentSpan = e.target.parentNode; //obtiene el span_padre del Boton eliminar
             span_resources.removeChild(parentSpan); //Remueve el span_padre del span_resources
-            var eliminar = agente_LS[indice].recursos.indexOf(a)
-            console.log(agente_LS[indice].recursos.indexOf(a));
+            // var eliminar = agente_LS[indice].recursos.indexOf(a.nombre)
+            var eliminar = agente_LS[indice].recursos.map(e => e.nombre).indexOf(a.nombre);
+            console.log(eliminar);
             agente_LS[indice].recursos.splice(eliminar,1); //Elimina del objeto agente del atributo recurso
+            // var s = app.eliminarRecursos(indice,parentSpan.id,JSON.parse(localStorage.getItem('agentes'))); //Elimina del objeto agente del atributo recurso
+            var prueba = agente_LS[indice].recursos.map(e => e.id);
+            console.log(prueba);
             localStorage.setItem('agentes',JSON.stringify(agente_LS));
           });
 
@@ -116,7 +127,7 @@ function createHTMLPanel(indice) {
 
     var div_recursos = dce('p');
     div_recursos.setAttribute('class','bottom-text');
-    div_recursos.setAttribute('id','R' + indice);
+    div_recursos.setAttribute('id','A' + indice);
 
     var toolTip = dce('div');
     toolTip.setAttribute('class','tooltip');
@@ -130,7 +141,7 @@ function createHTMLPanel(indice) {
     input_resource.setAttribute('type','text');
     input_resource.setAttribute('class', "styleBox");
     var btn_toolTip = dce('button');
-    btn_toolTip.setAttribute('data-id',agentes[indice].id);
+    btn_toolTip.setAttribute('data-id',agente_LS[indice].id);
     btn_toolTip.setAttribute('class', "styleButton");
     btn_toolTip.innerHTML = "Add Resource";
     btn_toolTip.addEventListener('click', function(e) {
@@ -140,10 +151,10 @@ function createHTMLPanel(indice) {
             var arrayRecursos = agregarRecursos.split(',');
             var agente_id = parseInt(e.target.getAttribute('data-id')); //obtiene la posicion de mi div en el que me encuentro
 
-            var id = agentes[parseInt(e.target.getAttribute('data-id'))].recursos.length;
+            var id = agente_LS[parseInt(e.target.getAttribute('data-id'))].recursos.length;
             for (var i in arrayRecursos) {
                 if(arrayRecursos[i].trim()) {
-                    document.getElementById('R'+indice).appendChild(addResourcesArray(id,arrayRecursos[i].trim(),agente_id));
+                    document.getElementById('A'+indice).appendChild(addResourcesArray(id,arrayRecursos[i].trim(),agente_id));
                     document.getElementById('tol'+indice).classList.remove("active");
                     id++;
                 } else {
@@ -187,12 +198,12 @@ function createHTMLPanel(indice) {
 }
 
 
-function addResourcesArray (i,nombre,id_agente){
+function addResourcesArray (i,nombreR,id_agente){
     var nombre_recurso = document.getElementById('ar'+id_agente);
     var span_padre = dce('span');
     var span_hijo = dce('span');
-    span_padre.setAttribute('id','idRec'+i );
-    span_hijo.innerHTML = "&nbsp &nbsp"+nombre+ '&nbsp &nbsp';
+    span_padre.setAttribute('id','R'+i );
+    span_hijo.innerHTML = "&nbsp &nbsp"+nombreR+ '&nbsp &nbsp';
     var btn = dce('input');
     btn.setAttribute('type','button');
     btn.setAttribute('value','X');
@@ -200,15 +211,20 @@ function addResourcesArray (i,nombre,id_agente){
     btn.addEventListener('click', function (e){
         var parentSpan = e.target.parentNode;
         nombre_recurso.removeChild(parentSpan);
-        var eliminar = agente_LS[id_agente].recursos.indexOf(nombre);
+        // var eliminar = agente_LS[id_agente].recursos.indexOf(nombreR);
+        var eliminar = agente_LS[id_agente].recursos.map(e => e.nombre).indexOf(nombreR);
         agente_LS[id_agente].recursos.splice(eliminar,1);
-        localStorage.setItem('agentes',JSON.stringify(agente_LS));
+      //   var s = app.eliminarRecursos(id_agente,parentSpan.id,JSON.parse(localStorage.getItem('agentes'))); //Elimina del objeto agente del atributo recurso
+      // //  agente_LS = localStorage.setItem('agentes',JSON.stringify(nuevo));
+      var prueba = agente_LS[id_agente].recursos.map(e => e.id);
+      console.log(prueba);
+      localStorage.setItem('agentes',JSON.stringify(agente_LS));
   });
     span_padre.appendChild(span_hijo);
     span_padre.appendChild(btn);
     console.log(span_padre);
     nombre_recurso.appendChild(span_padre);
-    agente_LS[id_agente].recursos.push(nombre);
+    agente_LS[id_agente].recursos.push({id:'R'+i,nombre:nombreR});
     localStorage.setItem('agentes',JSON.stringify(agente_LS));
 
     return nombre_recurso;

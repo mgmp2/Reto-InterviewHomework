@@ -1,11 +1,7 @@
-
-
-
+var agente_LS;
 var recurso = function(){
-    this.id;
-    this.nombre;
     this.Agente = function (){
-      agente =
+      var agente =
       [{ id : 0 , tipo: 'fisico', url : 'bjstdmngbgr01.thoughtworks.com' , estado : 'idle' , direccionIP: '192.168.1.2' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'Ubuntu'},{id: 'R1', nombre: 'firefox'}]},
       { id : 1 , tipo: 'fisico', url : 'bjstdmngbgr02.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.3' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'Ubuntu'}]},
       { id : 2 , tipo: 'fisico', url : 'bjstdmngbgr03.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.4' , directorio : '/var/lib/cruise-agent', recursos : []},
@@ -14,23 +10,31 @@ var recurso = function(){
       { id : 5 , tipo: 'virtual', url : 'bjstdmngbgr06.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.7' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'core-duo'}]},
       { id : 6 , tipo: 'virtual', url : 'bjstdmngbgr07.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.8' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'core-duo'}]}
     ];
+    //agente_LS = agente;
+    if(!localStorage.getItem('agentes')){
+      localStorage.setItem('agentes',JSON.stringify(agente));
+      agente_LS = JSON.parse(localStorage.getItem('agentes'));
+    }
+    else{
+      agente_LS = JSON.parse(localStorage.getItem('agentes'));
+    }
   };
 
     this.mostrarAgentes = function(tipo){
       if(tipo == 'all'){
-        return agente
+        return agente_LS
       }
       else{
-        return agente.filter(e => e.tipo == tipo);
+        return agente_LS.filter(e => e.tipo == tipo);
       }
     };
     this.agregarRecursos = function(id_agente , nombreR){
       var recurso = nombreR.split(",");
       recurso.map(function(e,i){
-        agente[id_agente].recursos.push({id : 'R'+agente[id_agente].recursos.length , nombre : e.trim() });
+        agente_LS[id_agente].recursos.push({id : 'R'+agente_LS[id_agente].recursos.length , nombre : e.trim() });
 
       });
-      return agente[id_agente];
+      return agente_LS[id_agente];
     };
 
     // this.btnAll       = function(array){
@@ -62,11 +66,11 @@ var recurso = function(){
     // };
     //
     //
-    this.eliminarRecursos = function (id_agente, id_recurso){
-        var eliminar = agente[id_agente].recursos.map(e => e.id).indexOf(id_recurso);
+    this.eliminarRecursos = function (id_agente, id_recurso,agente_L){
+        var eliminar = agente_L[id_agente].recursos.map(e => e.nombre).indexOf(id_recurso);
         // console.log(eliminar);
-         agente[id_agente].recursos.splice(eliminar,1);
-         return agente;
+         agente_L[id_agente].recursos.splice(eliminar,1);
+         return agente_L;
         // localStorage.setItem('agentes',JSON.stringify(agente));
       // });
     }
