@@ -1,11 +1,22 @@
-// var agente_LS;
-var usuario = [ {email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
-                 {email : "miriam@gmail.com", password : "12345678" , type : 'Member' },
-                 {email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
 
-usuario.filter(function (e){
-	localStorage.setItem(e.email,JSON.stringify(e));
-});
+var agente_LS;
+var usuario_LS;
+var usuario = [  {nombre: "Flor", apellido: "Tello", email : "flor@gmail.com" , password : "12345678" , type : 'Member' },
+                 {nombre: "Miriam", apellido: "Mendoza", email : "miriam@gmail.com", password : "12345678" , type : 'Member' },
+                 {nombre: "Emma", apellido: "Vasquez", email : "emma@gmail.com" , password : "12345678" , type : 'Publico' }];
+
+// usuario.filter(function (e){
+// 	localStorage.setItem(e.email,JSON.stringify(e) );
+// });
+
+if(!localStorage.getItem('usuarios')){
+  localStorage.setItem('usuarios',JSON.stringify(usuario));
+  usuario_LS = JSON.parse(localStorage.getItem('usuarios'));
+}
+else{
+  usuario_LS = JSON.parse(localStorage.getItem('usuarios'));
+}
+
 
 
 // var agentes = [

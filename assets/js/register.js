@@ -103,17 +103,18 @@ function Usuario ( nom, ap, correo, contra, tipo){
 var usuario = [];
 
 function agregarUsuario(n,a,c,p,t){
-   usuario.push(new Usuario(n, a ,c ,p, t));
+  //  usuario.push(new Usuario(n, a ,c ,p, t));
   cleanInput( nom, ap, email, pas, op);
+  usuario_LS.push(new Usuario(n, a ,c ,p, t));;
+  localStorage.setItem('usuarios',JSON.stringify(usuario_LS));
+      // var key = c;
+      // for(var i = 0; i< usuario.length; i++){
+      //   if(key=== usuario[i].email){
+      //     var datos = JSON.stringify(usuario[i]);
+      //     localStorage.setItem(key, datos);
+      //   }
 
-      var key = c;
-      for(var i = 0; i< usuario.length; i++){
-        if(key=== usuario[i].email){
-          var datos = JSON.stringify(usuario[i]);
-          localStorage.setItem(key, datos);
-        }
 
-      }
 };
 
 function cleanInput (nom, ap, correo, contra, tip) {

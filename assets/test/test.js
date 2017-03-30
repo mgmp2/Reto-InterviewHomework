@@ -29,7 +29,7 @@ describe("Resource app test",function() {
 
   it('Debería poder eliminar un recurso',function(){
     app.Agente();
-      assert.deepEqual(app.eliminarRecursos(0, 'firefox'),[{ id : 0 , tipo: 'fisico', url : 'bjstdmngbgr01.thoughtworks.com' , estado : 'idle' , direccionIP: '192.168.1.2' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'Ubuntu'}]},
+      assert.deepEqual(app.eliminarRecursos(0, 'R1'),[{ id : 0 , tipo: 'fisico', url : 'bjstdmngbgr01.thoughtworks.com' , estado : 'idle' , direccionIP: '192.168.1.2' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'Ubuntu'}]},
       { id : 1 , tipo: 'fisico', url : 'bjstdmngbgr02.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.3' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'Ubuntu'}]},
       { id : 2 , tipo: 'fisico', url : 'bjstdmngbgr03.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.4' , directorio : '/var/lib/cruise-agent', recursos : []},
       { id : 3 , tipo: 'fisico', url : 'bjstdmngbgr04.thoughtworks.com' , estado : 'idle' , direccionIP: '192.168.1.5' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'Ubuntu'}]},

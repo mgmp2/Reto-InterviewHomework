@@ -10,14 +10,14 @@ var recurso = function(){
       { id : 5 , tipo: 'virtual', url : 'bjstdmngbgr06.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.7' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'core-duo'}]},
       { id : 6 , tipo: 'virtual', url : 'bjstdmngbgr07.thoughtworks.com' , estado : 'building' , direccionIP: '192.168.1.8' , directorio : '/var/lib/cruise-agent', recursos : [{id: 'R0', nombre: 'core-duo'}]}
     ];
-    //agente_LS = agente;
-    if(!localStorage.getItem('agentes')){
-      localStorage.setItem('agentes',JSON.stringify(agente));
-      agente_LS = JSON.parse(localStorage.getItem('agentes'));
-    }
-    else{
-      agente_LS = JSON.parse(localStorage.getItem('agentes'));
-    }
+     agente_LS = agente;
+    // if(!localStorage.getItem('agentes')){
+    //   localStorage.setItem('agentes',JSON.stringify(agente));
+    //   agente_LS = JSON.parse(localStorage.getItem('agentes'));
+    // }
+    // else{
+    //   agente_LS = JSON.parse(localStorage.getItem('agentes'));
+    // }
   };
 
     this.mostrarAgentes = function(tipo){
@@ -66,11 +66,11 @@ var recurso = function(){
     // };
     //
     //
-    this.eliminarRecursos = function (id_agente, id_recurso,agente_L){
-        var eliminar = agente_L[id_agente].recursos.map(e => e.nombre).indexOf(id_recurso);
+    this.eliminarRecursos = function (id_agente, id_recurso){
+        var eliminar = agente_LS[id_agente].recursos.map(e => e.id).indexOf(id_recurso);
         // console.log(eliminar);
-         agente_L[id_agente].recursos.splice(eliminar,1);
-         return agente_L;
+         agente_LS[id_agente].recursos.splice(eliminar,1);
+         return agente_LS;
         // localStorage.setItem('agentes',JSON.stringify(agente));
       // });
     }
